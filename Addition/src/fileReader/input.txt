@@ -1,0 +1,2 @@
+abcd e f g h
+This code reads this file and write no. of words in it.

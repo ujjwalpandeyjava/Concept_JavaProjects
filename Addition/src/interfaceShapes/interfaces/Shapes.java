@@ -1,4 +1,4 @@
-package interfaces;
+package interfaceShapes.interfaces;
 
 public interface Shapes {
 	public void input();

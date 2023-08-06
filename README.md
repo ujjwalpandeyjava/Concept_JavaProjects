@@ -1,2 +1,3 @@
 # javaPracticeUploads
-This repository contains files and code to be used in future code. They are some helpful codes.
+This repository contains code and files, to be used in future code for help.
+These are the java practice codes. 
