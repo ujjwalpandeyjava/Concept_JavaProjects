@@ -1,6 +1,8 @@
+package Arrays;
+
 import java.util.Arrays;
 
-public class ArraysJava {
+public class ArrayDeceleration {
 	public static void main(String[] args) {
 		// One dimensional
 		int[] myArray1;

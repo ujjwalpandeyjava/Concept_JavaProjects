@@ -1,3 +1,4 @@
+package utility;
 public final class MathUtils {
 	private MathUtils() { // private constructor, will not allow instance creation.	// will throw error constructor not visible
 	}
