@@ -1,16 +1,9 @@
-/*Custom Exception*/
+package customException;
 
-class InvalidAgeException extends Exception { // We made this exception..
-	InvalidAgeException(String S) { // constructor
-		super(S);
-	}
-}
-
-class CustomException {
-
+public class CustomException {
 	public static void main(String a[]) {
 		try {
-			ValidateAge(29);
+			ValidateAge(9);
 		} catch (Exception e) {
 			System.out.println("Exception fires...\n" + e);
 		}
