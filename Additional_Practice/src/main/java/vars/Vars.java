@@ -3,7 +3,6 @@ package vars;
 public class Vars {
 
 	public static void main(String[] args) {
-	/*	// Working example with version 10+
 		var x = 100; // int
 		var y = 1.90; // double
 		var z = 'a'; // char
@@ -16,6 +15,6 @@ public class Vars {
 		System.out.println(y);
 		System.out.println(z);
 		System.out.println(p);
-		System.out.println(q);*/
+		System.out.println(q);
 	}
 }
