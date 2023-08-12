@@ -1,10 +1,12 @@
+package seperate;
+
 class take {
 	/* With final */
-	final int a = 444;
-	int b = 555;
+	final static int a = 444;
+	static int b = 555;
 
-	void show(int a_, int b_) {
-		a = a_;
+	static void show(int a_, int b_) {
+//		this.a = a_; // cannot
 		b = b_;
 		System.out.println("The value of a:" + a);
 		System.out.println("The value of b:" + b);
@@ -13,7 +15,7 @@ class take {
 
 class final_ {
 	public static void main(String as[]) {
-		take t1 = new take();
-		t1.show(4, 5);
+		take.show(4, 5);
 	}
+
 }
