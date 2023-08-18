@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- New table for every class and all classes are interconnected with <union-subclass>. 
+	(Only different tables with same extended attributes.) -->
+<hibernate-mapping>
+	<class name="model.Book" table="allbooks"
+		discriminator-value="General">
+		<id name="bookID" column="bookID">
+			<generator class="increment"></generator>
+		</id>
+		<discriminator column="BookType" type="string" />
+		<property name="name" column="bookName" />
+		<property name="price" column="bookPrice" />
+
+		<!-- Child classes. -->
+		<subclass name="model.Literature"
+			discriminator-value="Literature">
+			<property name="authName" column="litAuthName" />
+		</subclass>
+
+		<subclass name="model.Comic" discriminator-value="comic">
+			<property name="authName" column="ComiAuthName" />
+		</subclass>
+
+	</class>
+
+</hibernate-mapping>
