@@ -135,4 +135,8 @@ class Patterns {
 //	    13 12  
 //	       11 
 
+	static void hourGlass() {
+		
+	}
+//	
 }

@@ -1,3 +1,5 @@
+package seperate;
+
 import java.util.Scanner;
 
 class prime/* Enter numbers to check prime and print prime table. */
@@ -22,11 +24,12 @@ class prime/* Enter numbers to check prime and print prime table. */
 					break;
 				}
 			}
-			if (count != 1) {
-				System.out.println("It is a prime number:-" + nos + "\n" + "Here is a table of prime number " + nos);
-				for (int k = 1; k < 11; k++)
-					System.out.println("        " + nos + "*" + k + "=" + (nos * k));
-			}
+//			if (count != 1) {
+//				System.out.println("It is a prime number:-" + nos + "\n" + "Here is a table of prime number " + nos);
+//				for (int k = 1; k < 11; k++)
+//					System.out.println("        " + nos + "*" + k + "=" + (nos * k));
+//			}
 		}
+		sc.close();
 	}
 }
