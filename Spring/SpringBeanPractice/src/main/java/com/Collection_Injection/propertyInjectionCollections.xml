@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    ">
+	<bean class="com.Collection_Injection.Emp" name="GetEmpBean">
+
+		<!-- String -->
+		<property name="name"    value="Ujjwal Pandey" />
+
+		<!-- Collectoin List -->
+		<property name="phones">
+			<list>
+				<value>11111</value>
+				<value>2222</value>
+				<value>3333</value>
+				<null></null>
+			</list>
+		</property>
+
+		<!-- Collection Set -->
+		<property name="addresses">
+			<set>
+				<value>g-block</value>
+				<value>a-block</value>
+				<value>e-block</value>
+			</set>
+		</property>
+
+		<!-- Collection Map -->
+		<property name="courses">
+			<map>
+				<entry key="HTML" value="2 Week" />
+				<entry key="JavaScript" value="1 Month" />
+				<entry key="Java" value="4 Month" />
+			</map>
+		</property>
+
+		<!-- Collection Property -->
+		<property name="prop">
+			<props>
+				<prop key="propKey1">Prop 1</prop>
+				<prop key="propKey2">Prop 2</prop>
+				<prop key="propKey3">Prop 3</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>

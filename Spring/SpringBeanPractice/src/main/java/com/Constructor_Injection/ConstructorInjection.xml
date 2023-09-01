@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    ">
+    <!-- These two are for one liner argument -->
+	<!-- Do not put name in 'constructor-arg' tag -->
+	<bean class="com.Constructor_Injection.Certi" name="cer">
+		<constructor-arg value="Software Developer"
+			type="String" />
+	</bean>
+	<!-- Constructor using 'c schema' (c:const_parName) -->
+	<bean class="com.Constructor_Injection.Certi" name="cer2"
+		c:certiName="Full stack developer" />
+		
+		<!-- This one is for 2 argument constructor -->
+	<!-- Constructor using 'c schema' (c:const_parName) -->
+	<bean class="com.Constructor_Injection.Certi" name="cer22">
+		<constructor-arg name="certiName"
+			value="Full stack developer" index="0" />
+		<constructor-arg name="certiName2"
+			value="Full stack developer 2" index="1" />
+	</bean>
+
+
+	<bean class="com.Constructor_Injection.Person" name="per">
+		<constructor-arg value="100" type="int" />
+		<constructor-arg value="Ujjwal pandey" />
+		<!-- <constructor-arg ref="cer" /> -->
+		<!-- <constructor-arg ref="cer2" /> -->
+		<constructor-arg ref="cer22" />
+		<constructor-arg>
+			<list>
+				<value>1</value>
+				<value>2</value>
+				<value>3</value>
+			</list>
+		</constructor-arg>
+	</bean>
+</beans>
+    
+    
