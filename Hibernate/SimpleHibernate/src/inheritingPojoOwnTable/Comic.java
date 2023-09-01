@@ -1,7 +1,16 @@
-package app;
+package inheritingPojoOwnTable;
 
 public class Comic extends Book {
-	String authName;
+	private String authName;
+
+	public Comic() {
+		super();
+	}
+
+	public Comic(String authName) {
+		super();
+		this.authName = authName;
+	}
 
 	public String getAuthName() {
 		return authName;
@@ -11,7 +20,4 @@ public class Comic extends Book {
 		this.authName = authName;
 	}
 
-	public Comic() {
-		super();
-	}
 }

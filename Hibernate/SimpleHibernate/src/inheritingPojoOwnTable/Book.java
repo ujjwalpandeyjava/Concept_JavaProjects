@@ -1,9 +1,19 @@
-package app;
+package inheritingPojoOwnTable;
 
 public class Book {
-	int bookID;
-	String name;
-	int price;
+	private int bookID;
+	private String name;
+	private int price;
+
+	public Book() {
+		super();
+	}
+
+	public Book(String name, int price) {
+		super();
+		this.name = name;
+		this.price = price;
+	}
 
 	int getBookID() {
 		return bookID;
@@ -26,16 +36,6 @@ public class Book {
 	}
 
 	public void setPrice(int price) {
-		this.price = price;
-	}
-
-	public Book() {
-		super();
-	}
-
-	public Book(String name, int price) {
-		super();
-		this.name = name;
 		this.price = price;
 	}
 }
