@@ -1,22 +1,46 @@
 package stringEg;
 
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 // String and similar classes
 class StringRelated {
 
 	public static void main(String[] args) {
 		// 1. String
-		System.out.println("""
-
-				Normal-String Example""");
+		int number0 = 90;
+		float float0 = 69.49f;
+		double double0 = 69.49d;
+		String textBlock = """
+				This is "Text blocks",
+				Variable: %s, $%.3f, %s
+				""".formatted(number0, float0, double0);
+		System.out.println(textBlock);
 		String S1 = "Simple string";
 		S1.concat(" change will not add"); // Value does'nt get changed as we haven't assigned it to the field
 		System.out.println(S1);
 		S1 = S1.concat(" new String object assigned to same location"); // Now value get updated
 		System.out.println(S1);
-		// 2. StringBuffer
-		System.out.println("""
 
-				StringBuffer Example""");
+		// Remove white spaces from start, end
+		String text = "   Strip will remove from leading and trailing whitespace.   ";
+		String trimmedText = text.strip();
+		String trimmedLeadingText = text.stripLeading();
+		String trimmedTrailingText = text.stripTrailing();
+		System.out.println(trimmedText); // This is a string with leading and trailing whitespace.
+		System.out.println(trimmedLeadingText); // This is a string with trailing whitespace.
+		System.out.println(trimmedTrailingText); // This is a string with leading whitespace.
+
+		// Repeat string
+		String oneTimeString = "Hello_";
+		System.out.println(oneTimeString.repeat(3)); // Hello_Hello_Hello_
+
+		//
+		String oneLineString = "This is a string\n with multiple\n lines.\nBreaks whereever line break is added.";
+		Stream<String> lines = oneLineString.lines();
+		System.out.println(Arrays.toString(lines.toArray())); // [This is a string, with multiple lines.]
+
+		// 2. StringBuffer
 		StringBuffer sb = new StringBuffer();
 		sb.append("Hello ");
 		sb.append("world ");

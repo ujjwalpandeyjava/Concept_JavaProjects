@@ -2,12 +2,12 @@ package classTypes;
 
 public class superexample {
 	public static void main(String as[]) {
-		Bb e = new Bb();
+		B e = new B();
 		e.show();
 	}
 }
 
-class Aa {/* With super. */
+class A {/* With super. */
 	int a = 10;
 
 	void show() {
@@ -16,7 +16,7 @@ class Aa {/* With super. */
 	}
 }
 
-class Bb extends Aa {
+class B extends A {
 	int a = 20;
 	int b = 44;
 

@@ -3,6 +3,7 @@ package objPatterns;
 
 public class restrictInstanceCreationClass {
 	public static void main(String[] args) {
+		@SuppressWarnings("unused")
 		RestrictInstance obj;
 		int a = 1;
 		while (a <= 20) {

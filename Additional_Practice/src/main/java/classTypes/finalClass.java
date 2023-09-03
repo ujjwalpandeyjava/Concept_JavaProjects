@@ -1,4 +1,4 @@
-package classTypes;
+/*package classTypes;
 
 final class Aa {
 	Aa() {
@@ -6,7 +6,7 @@ final class Aa {
 	}
 }
 
-class Bb extends Aa {	// cannot do thus, will show as syntax error
+class Bb extends Aa { // cannot do thus, will show as syntax error
 	Bb() {
 		System.out.println("It is B.");
 	}
@@ -16,4 +16,4 @@ class finalClass {
 	public static void main(String as[]) {
 		Bb obj = new Bb();
 	}
-}
+}*/
