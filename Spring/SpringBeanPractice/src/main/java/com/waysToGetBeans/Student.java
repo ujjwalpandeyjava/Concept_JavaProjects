@@ -1,12 +1,14 @@
 package com.waysToGetBeans;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 // Must use "@Component" annotation to tell it is a bean
 @Component("getStudent")
+@Scope(scopeName = "prototype")	// Singelton so that the whole app does not have same scope.
 public class Student {
-	@Value("Ujjwal pandey jii")
+	@Value("Ujjwal pandey")
 	private String name;
 
 	@Override

@@ -13,9 +13,14 @@ public class MainRun {
 		/* Way 1: Direct from POJO as bean */
 		// For annotation based configuration.
 		ApplicationContext context = new AnnotationConfigApplicationContext(Configurations.class);
-		Student bean1 = context.getBean("getStudent", Student.class);
-		System.out.println(bean1);
-		bean1.study();
+		Student bean01 = context.getBean("getStudent", Student.class);
+//		Student bean02 = context.getBean(Student.class);
+//		Student bean03 = (Student) context.getBean("getStudent");
+		System.out.println(bean01);
+		bean01.study();
+		bean01.setName(("Ujjwal"));
+		System.out.println(bean01);
+		System.out.println(context.getBean("getStudent", Student.class));
 		((AbstractApplicationContext) context).close();
 
 		/* Way 2: From config file as bean */
