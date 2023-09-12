@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC 
-"-//Hibernate/Hibernate Mapping DTD//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <!-- New table for every class and all classes are interconnected with <union-subclass>. 
 	(Only different tables with same extended attributes.) -->
 <hibernate-mapping>
 	<class name="inheritingPojoOwnTable.Book" table="normalBooks">
-		<id name="bookID" column="bookID">
-			<generator class="increment"></generator>
-		</id>
+		<id name="bookID" column="bookID"><generator class="increment"></generator></id>
 		<property name="name" column="bookName" />
 		<property name="price" column="bookPrice" />
 		<union-subclass name="inheritingPojoOwnTable.Literature" table="literatures">

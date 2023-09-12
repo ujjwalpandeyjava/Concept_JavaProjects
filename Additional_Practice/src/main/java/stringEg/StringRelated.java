@@ -17,7 +17,7 @@ class StringRelated {
 				""".formatted(number0, float0, double0);
 		System.out.println(textBlock);
 		String S1 = "Simple string";
-		S1.concat(" change will not add"); // Value does'nt get changed as we haven't assigned it to the field
+		S1.concat(" change will not add"); // Value doesn't get changed as we haven't assigned it to the field
 		System.out.println(S1);
 		S1 = S1.concat(" new String object assigned to same location"); // Now value get updated
 		System.out.println(S1);

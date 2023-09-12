@@ -6,7 +6,7 @@ import org.hibernate.cfg.Configuration;
 
 public class AppEntry {
 	public static void main(String[] args) {
-		Configuration cfg = new Configuration().configure("inheritingPOJOs/hibernate.cfg.xml");
+		Configuration cfg = new Configuration().configure("inheritingPojoOwnTable/hibernate.cfg.xml");
 		SessionFactory sessFact = cfg.buildSessionFactory();
 		Session sess = sessFact.openSession();
 
@@ -25,7 +25,6 @@ public class AppEntry {
 		sess.persist(boo);
 		sess.persist(comi);
 		sess.persist(lit);
-
 		sess.getTransaction().commit();
 	}
 }

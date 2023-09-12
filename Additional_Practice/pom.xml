@@ -28,6 +28,27 @@
 			<artifactId>spring-dotenv</artifactId>
 			<version>4.0.0</version>
 		</dependency>
+
+		<!--
+			Chat-GPT integration
+			https://github.com/TheoKanning/openai-java
+		 	https://mvnrepository.com/artifact/com.theokanning.openai-gpt3-java
+		 -->
+		<!--
+		https://mvnrepository.com/artifact/com.theokanning.openai-gpt3-java/service -->
+		<dependency>
+			<groupId>com.theokanning.openai-gpt3-java</groupId>
+			<artifactId>service</artifactId>
+			<version>0.16.0</version>
+		</dependency>
+
+		<!--Salesforce -->
+		<!-- https://mvnrepository.com/artifact/com.force.api/force-wsc -->
+		<dependency>
+			<groupId>com.force.api</groupId>
+			<artifactId>force-wsc</artifactId>
+			<version>59.0.0</version>
+		</dependency>
 	</dependencies>
 	<properties>
 		<maven.compiler.target>17</maven.compiler.target>
