@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+   <session-factory>
+      <property name = "hibernate.dialect">org.hibernate.dialect.MySQLDialect</property><!-- Dialect connect application with using database. -->
+      <property name = "hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property><!-- Which drive to use (same as using) -->
+      <property name = "hibernate.connection.url">jdbc:mysql://localhost:3306/hibernatepractice</property><!-- Database name/url -->
+      <property name = "hibernate.connection.username">root</property><!-- login details -->
+      <property name = "hibernate.connection.password">Goldenstar@123</property><!-- login Password -->
+      <property name = "hibernate.show_sql">true</property><!-- Show running sql query -->
+      <property name = "hibernate.hbm2ddl.auto">update</property><!-- table create and update -->
+      <property name="hibernate.format_sql">true</property>
+      <mapping resource = "Student.hbm.xml"/><!-- File/files to be used for maipping -->
+      <!-- resource when using xml, and source when annotation -->
+   </session-factory>
+</hibernate-configuration>
