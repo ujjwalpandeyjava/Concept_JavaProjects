@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+/// To allow access by mulitple user and multiple roles
 @Entity
 public class User {
 

@@ -3,7 +3,7 @@ package com.AutoWiring_Annotation;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class MainRun {
+public class AppEntry {
 	public static void main(String[] args) {
 
 		/*

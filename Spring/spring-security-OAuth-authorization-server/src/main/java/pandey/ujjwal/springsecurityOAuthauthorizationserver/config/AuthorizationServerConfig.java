@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.core.oidc.OidcScopes;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.server.authorization.client.InMemoryRegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
@@ -37,37 +38,38 @@ public class AuthorizationServerConfig {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	// Security-Filter-Chain
+	// Configuring our authorization
 	@Bean
 	@Order(Ordered.HIGHEST_PRECEDENCE)
 	public SecurityFilterChain authServerSecurityFilterChain(HttpSecurity httpSecurity) throws Exception {
-		// This code line gives all the default line of APIs like: /api, /token, JWT,
-		// etc.
+		// This code line gives all the default line of APIs like:
+		// /api, /token, JWT, etc. can add customs also
 		OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(httpSecurity);
-
 		return httpSecurity.formLogin(Customizer.withDefaults()).build();
 	}
 
-	// In-build repo to all the client get registered (we can also go for custom
-	// implementation)
+	// Client get registers here with DB (In-build repo to all the) 
+	// (we can also go for custom implementation)
 	@Bean
 	public RegisteredClientRepository registeredClientRepository() {
-
-		// My one client (spring-security-client)
+		// My one static client (spring-security-client)
 		// Have to make it dynamic by generating all details from DB server and all.
-		RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString()).clientId("api-client")
-				.clientSecret(passwordEncoder.encode("SecereteKey"))
+		RegisteredClient registeredClient = RegisteredClient
+				.withId(UUID.randomUUID().toString())
+				.clientId("api-client")
+				.clientSecret(passwordEncoder.encode("secret"))
 				.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-				.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-				.authorizationGrantType(AuthorizationGrantType.PASSWORD)
-				.redirectUri("http://127.0.0.1:8080/login/oauth2/code/api-client-oidc")
-				.redirectUri("http://127.0.0.1:8080/authorized").scope(OidcScopes.OPENID).scope("api.read")
+				.redirectUri("http://localhost:8085/login/oauth2/code/apiClientName")
+//				.redirectUri("http://auth-server:8085/login/oauth2/code/apiClientName")
+//				.scope(OidcScopes.OPENID)
+				.scope(OidcScopes.PROFILE)
+//				.scope(OidcScopes.EMAIL)
 				.clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build()).build();
 		return new InMemoryRegisteredClientRepository(registeredClient);
 	}
-	
-	//Below 3 methods are standard in 90% case we don't need to change it.
+
+	// Below 3 methods are standard in 90% case we don't need to change it.
 	// Until need to change algorithm (RSA)
 	@Bean
 	public JWKSource<SecurityContext> jwkSource() throws NoSuchAlgorithmException {
@@ -75,7 +77,12 @@ public class AuthorizationServerConfig {
 		JWKSet jwkSet = new JWKSet(rsaKey);
 		return (jwkSelector, securityContext) -> jwkSelector.select(jwkSet);
 	}
-
+	
+	@Bean 
+	public JwtDecoder jwtDecoder(JWKSource<SecurityContext> jwkSource) {
+		return OAuth2AuthorizationServerConfiguration.jwtDecoder(jwkSource);
+	}
+	
 	private static RSAKey generateRsa() throws NoSuchAlgorithmException {
 		KeyPair keyPair = generateRsaKey();
 		RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
@@ -89,12 +96,19 @@ public class AuthorizationServerConfig {
 		return keyPairGenerator.generateKeyPair();
 	}
 
-	
 	// About OAuth server provider
 	@Bean
 	public AuthorizationServerSettings providerSettings() {
-	    return AuthorizationServerSettings.builder()
-	      .issuer("http://localhost:9000")
-	      .build();
+//		return AuthorizationServerSettings.builder().issuer("http://auth-server:9000").build();
+		return AuthorizationServerSettings.builder().issuer("http://localhost:9000").build();
 	}
+	
+
+	// Hard coded users
+//	@Bean
+//	public UserDetailsService hardCodedUsers() {
+//		UserDetails admin = User.withUsername("AdminPandey").password(passwordEncoder.encode("123")).roles("ADMIN").build();
+//		UserDetails simple = User.withUsername("SimplePandey").password(passwordEncoder.encode("123")).roles("SIMPLE").build();
+//		return new InMemoryUserDetailsManager(admin, simple);
+//	}
 }

@@ -2,6 +2,10 @@ server:
  port: 9000
  
 spring:
+ #security:
+  #user:
+   #name: ujjwal
+   #password: abcd
  datasource:
   url: jdbc:mysql://localhost:3306/user_registration
   username: root

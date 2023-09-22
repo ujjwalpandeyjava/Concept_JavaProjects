@@ -60,4 +60,10 @@ public class UserModel {
 		this.matchingPassword = matchingPassword;
 	}
 
+	@Override
+	public String toString() {
+		return "UserModel [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password="
+				+ password + ", matchingPassword=" + matchingPassword + "]";
+	}
+
 }

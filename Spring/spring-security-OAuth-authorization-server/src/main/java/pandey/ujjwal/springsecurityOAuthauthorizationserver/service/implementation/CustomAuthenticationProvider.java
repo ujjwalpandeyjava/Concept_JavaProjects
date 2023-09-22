@@ -27,13 +27,16 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		return checkPassword(userDetails, password);
 	}
 
+	// Bind and get it with AuthenticationManagerBuilder on bean
 	private Authentication checkPassword(UserDetails user, String rawPassword) {
 		if (passwordEncoder.matches(rawPassword, user.getPassword())) {
-			return new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(),
-					user.getAuthorities());
-		} else {
+			return new UsernamePasswordAuthenticationToken(
+					user.getUsername(), 
+					user.getPassword(),
+					user.getAuthorities()
+				);
+		} else
 			throw new BadCredentialsException("Bad Credentails");
-		}
 	}
 
 	@Override

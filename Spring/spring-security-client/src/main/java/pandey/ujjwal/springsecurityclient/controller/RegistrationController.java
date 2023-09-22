@@ -1,5 +1,8 @@
 package pandey.ujjwal.springsecurityclient.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
@@ -22,12 +25,10 @@ import pandey.ujjwal.springsecurityclient.utlity.ReqResRelated;
  * Contains (with token)
  * Registration: Register-Verify-ReVerify
  * Password: forget/change/
- * 
  */
 
-
 @RestController
-@RequestMapping("/appName")
+@RequestMapping
 public class RegistrationController {
 
 	@Autowired
@@ -37,20 +38,34 @@ public class RegistrationController {
 	@Autowired
 	private RegistrationCompleteEvent registrationCompleteEvent;
 
-	@GetMapping(value = { "", "/" })
+	@GetMapping(value = { "", "/", "/hello" })
 	public String getRgisterUser() {
-		return "This is home page";
+		return "Home page after authorization";
 	}
 
 	@PostMapping("/register")
-	public ResponseEntity<String> registerUser(@RequestBody UserModel userModel, final HttpServletRequest req) {
-		User newUser = userService.registerUser(userModel);
-		if (newUser == null)
-			return new ResponseEntity<String>("FAILED", HttpStatus.CREATED);
-		registrationCompleteEvent.setUser(newUser);
-		registrationCompleteEvent.setApplicationActivationUrl(ReqResRelated.applicationURl(req));
-		appEvntPublisher.publishEvent(registrationCompleteEvent);
-		return new ResponseEntity<String>("SUCCESS", HttpStatus.CREATED);
+	public ResponseEntity<Map<String, String>> registerUser(@RequestBody UserModel userModel, final HttpServletRequest req) {
+		System.out.println("\n\nRegister url: " + userModel);
+		Map<String, String> response = new HashMap<>();
+		Map<String, Object> newUser = userService.registerUser(userModel);
+		
+		System.out.println("newUser: " + newUser);
+		if (newUser.get("MESSAGE").toString().equalsIgnoreCase("PasswordMismatched")) {
+			response.put("MESSAGE", "Confirm Password Mismatched!");
+			return new ResponseEntity<Map<String, String>>(response, HttpStatus.NOT_ACCEPTABLE);
+		} else if (newUser.get("MESSAGE").toString().equalsIgnoreCase("DUPLICATE_ENTRY")) {
+			response.put("MESSAGE","FAILED: ID already exists!");
+			response.put("NEXT_ACTION", "Use other e-mail account");
+			return new ResponseEntity<Map<String, String>>(response, HttpStatus.FOUND);
+		} else {
+			registrationCompleteEvent.setUser((User) newUser.get("user"));
+			registrationCompleteEvent.setApplicationActivationUrl(ReqResRelated.getApplicationURl(req));
+			appEvntPublisher.publishEvent(registrationCompleteEvent);
+			
+			response.put("MESSAGE", "SUCCESS");
+			response.put("NEXT_ACTION", "Check e-mail to activate account");
+			return new ResponseEntity<Map<String, String>>(response, HttpStatus.CREATED);
+		}
 	}
 
 	@PostMapping("/register/verifyRegistration")

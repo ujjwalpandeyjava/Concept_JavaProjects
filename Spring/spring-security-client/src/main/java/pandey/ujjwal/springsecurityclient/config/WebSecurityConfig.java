@@ -8,20 +8,21 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import pandey.ujjwal.springsecurityclient.entity.User;
 import pandey.ujjwal.springsecurityclient.event.RegistrationCompleteEvent;
 
-@Configuration
 @ComponentScan(basePackages = "pandey.ujjwal.springsecurityclient.config")
-@EnableWebSecurity
+@Configuration
+@EnableWebSecurity // For the application
+//@EnableMethodSecurity(prePostEnabled = false, securedEnabled = true)	// Each method can have custom security access
 public class WebSecurityConfig {
-
-	public static final String[] WHITE_LIST_URLs= { "/appName", "/appName/", "/appName/register",
-			"/appName/register/verifyRegistration" };
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -39,36 +40,30 @@ public class WebSecurityConfig {
 		return new RegistrationCompleteEvent(getUser());
 	}
 
-	/*@Bean
-	CorsConfigurationSource corsConfigurationSource() {
-		CorsConfiguration myCorsConfiguration = new CorsConfiguration();
-		myCorsConfiguration.setAllowedOrigins(List.of("http://localhost:8080"));
-		myCorsConfiguration.setAllowedMethods(List.of("GET", "POST"));
-		myCorsConfiguration.setAllowedHeaders(List.of("*"));
-		myCorsConfiguration.setExposedHeaders(List.of("Content-Type"));
-		myCorsConfiguration.setMaxAge(3000l);
-		return new CorsConfigurationSource() {
-			@Override
-			public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
-				return myCorsConfiguration;
-			}
-		};
-	}*/
-
-	//	https://youtu.be/HRwlT_etr60
-	// This will shut the security by pass of use login provided by spring security
-	// csrf() = Cross-Site Request Forgery (CSRF) attacks.
-	// form-based authentication, you should enable CSRF protection
+	// Configuring our authorization with autorization server
 	@Bean
-	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		 http.cors().and().csrf().disable()
-		 // httpSecurity.cors().configurationSource(corsConfigurationSource()).and().csrf().disable()
-			.authorizeRequests()
-				.requestMatchers(WHITE_LIST_URLs).permitAll()
-				.requestMatchers("/authorized/**").authenticated()
-			.and()
-				.oauth2Login(oAuth2Login -> oAuth2Login.loginPage("/oauth2/authorization/api-client-oidc"))
-				.oauth2Client(Customizer.withDefaults());
-		return http.build();
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		return http.cors(cors -> cors.disable()) // Cross-Origin Resource Sharing
+				.csrf(csrf -> csrf.disable()) // Cross-Site Request Forgery
+				.authorizeHttpRequests(authorize -> authorize
+					// "/hello" // Testing the authorization here
+					.requestMatchers("/freePermission/**", "", "/", "/register", "register/verifyRegistration").permitAll()
+					.anyRequest().authenticated()
+				)
+//				.formLogin(Customizer.withDefaults())	// Own server based authontication - Working fine
+//				Use OAuth2 based authontication
+//				.oauth2Login(oAuth2Login -> oAuth2Login.loginPage("/login/oauth2/code/apiClientName"))
+//				.oauth2Client(Customizer.withDefaults())
+				.oauth2Login(oAuth2Login -> oAuth2Login.loginPage("/login/oauth2/code/apiClientName"))
+		        .oauth2Client(Customizer.withDefaults())
+				.build();
+	}
+
+	// Hard coded users working fine for formLogin
+	@Bean
+	public UserDetailsService hardCodedUsers() {
+		UserDetails admin = org.springframework.security.core.userdetails.User.withUsername("AdminPandey").password(new BCryptPasswordEncoder(11).encode("123")).roles("ADMIN").build();
+		UserDetails simple = org.springframework.security.core.userdetails.User.withUsername("SimplePandey").password(new BCryptPasswordEncoder(11).encode("123")).roles("SIMPLE").build();
+		return new InMemoryUserDetailsManager(admin, simple);
 	}
 }

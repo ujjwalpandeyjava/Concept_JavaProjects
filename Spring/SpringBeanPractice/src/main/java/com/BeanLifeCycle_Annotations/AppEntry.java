@@ -3,7 +3,7 @@ package com.BeanLifeCycle_Annotations;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class MainRun {
+public class AppEntry {
 	public static void main(String[] args) {
 		System.out.println("Bean life cycle is maintained in the Bean itself and called using xml config");
 		

@@ -1,6 +1,8 @@
 package pandey.ujjwal.springsecurityclient.service.implementations;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,21 +29,36 @@ public class UserServiceImpl implements UserService {
 	private final static String EXPIRED_TOKEN = "EXPIRED_TOKEN";
 
 	@Override
-	public User registerUser(UserModel userModel) {
+	public Map<String, Object> registerUser(UserModel userModel) {
+		System.out.println("Inside register user: ");
+		Map<String, Object> response = new HashMap<>();
+		response.put("MESSAGE", "error");
 		User newUser = new User();
-		if (!userModel.getPassword().equals(userModel.getMatchingPassword()))
-			return null;
-		newUser.setFirstName(userModel.getFirstName());
-		newUser.setLastName(userModel.getLastName());
-		newUser.setEmail(userModel.getEmail());
-		newUser.setPassword(passwordEncoder.encode(userModel.getPassword()));
-		System.out.println(newUser);
-		return userRepository.save(newUser);
+		if (!userModel.getPassword().equals(userModel.getMatchingPassword())) {			
+			response.replace("MESSAGE", "PasswordMismatched");
+			return response;
+		} else {
+			User userExists = userRepository.findByEmail(userModel.getEmail());
+			if(userExists != null) {
+				response.replace("MESSAGE", "DUPLICATE_ENTRY");
+				response.put("user", userExists);
+				return response;
+			} else {
+				newUser.setEmail(userModel.getEmail());
+				newUser.setFirstName(userModel.getFirstName());
+				newUser.setLastName(userModel.getLastName());
+				newUser.setPassword(passwordEncoder.encode(userModel.getPassword()));
+				User savedUser = userRepository.save(newUser);
+				response.replace("MESSAGE", "SUCCESS");
+				response.put("user", savedUser);
+				return response;
+			}
+		}
 	}
 
 	@Override
 	public VerificationToken saveVerificationTokenForUser(User user, String token) {
-		// Connect Token and User, then save in DB with expiration time
+		// Connecting Token and User, then save in DB with expiration time
 		VerificationToken userConnectedVerificationToken = new VerificationToken(user, token); // Connecting
 		return verificationTokenRepository.save(userConnectedVerificationToken);
 	}

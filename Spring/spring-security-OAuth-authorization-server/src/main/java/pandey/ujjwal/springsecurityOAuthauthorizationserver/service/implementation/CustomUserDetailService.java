@@ -41,8 +41,14 @@ public class CustomUserDetailService implements UserDetailsService {
 		if (userFound == null)
 			throw new UsernameNotFoundException("User with email: '" + userEmail + "' not found");
 		// we can add all the details from the parameter in the DB
-		return new org.springframework.security.core.userdetails.User(userFound.getFirstName(), userFound.getPassword(),
-				userFound.isEnabled(), true, true, true, getAuthorities(List.of(userFound.getRole())));
+		return new org.springframework.security.core.userdetails.User(
+				userFound.getFirstName(), 
+				userFound.getPassword(),
+				userFound.isEnabled(), 
+				true, 
+				true, 
+				true, 
+				getAuthorities(List.of(userFound.getRole())));
 	}
 
 	private Collection<? extends GrantedAuthority> getAuthorities(List<String> role) {
@@ -51,5 +57,4 @@ public class CustomUserDetailService implements UserDetailsService {
 			authorities.add(new SimpleGrantedAuthority(roles));
 		return authorities;
 	}
-
 }
