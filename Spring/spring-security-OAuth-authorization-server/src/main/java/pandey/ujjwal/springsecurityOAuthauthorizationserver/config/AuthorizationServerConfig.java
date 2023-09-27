@@ -10,6 +10,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.Customizer;
@@ -32,57 +33,65 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 
+/**
+ * https://www.baeldung.com/spring-security-oauth-auth-server Client ID – Spring
+ * will use it to identify which client is trying to access the resource Client
+ * secret code – a secret known to the client and server that provides trust
+ * between the two Authentication method – in our case, we’ll use basic
+ * authentication, which is just a username and password Authorization grant
+ * type – we want to allow the client to generate both an authorization code and
+ * a refresh token Redirect URI – the client will use it in a redirect-based
+ * flow Scope – this parameter defines authorizations that the client may have.
+ * In our case, we’ll have the required OidcScopes.OPENID and our custom one,
+ * articles. read
+ */
 @Configuration(proxyBeanMethods = false)
+@Import(OAuth2AuthorizationServerConfiguration.class)
 public class AuthorizationServerConfig {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	// Configuring our authorization
-	@Bean
-	@Order(Ordered.HIGHEST_PRECEDENCE)
-	public SecurityFilterChain authServerSecurityFilterChain(HttpSecurity httpSecurity) throws Exception {
-		// This code line gives all the default line of APIs like:
-		// /api, /token, JWT, etc. can add customs also
-		OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(httpSecurity);
-		return httpSecurity.formLogin(Customizer.withDefaults()).build();
-	}
-
-	// Client get registers here with DB (In-build repo to all the) 
+	// Client get registers here with DB (In-build repo to all the)
 	// (we can also go for custom implementation)
 	@Bean
 	public RegisteredClientRepository registeredClientRepository() {
 		// My one static client (spring-security-client)
 		// Have to make it dynamic by generating all details from DB server and all.
-		RegisteredClient registeredClient = RegisteredClient
-				.withId(UUID.randomUUID().toString())
-				.clientId("api-client")
+		RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString()).clientId("api-client")
 				.clientSecret(passwordEncoder.encode("secret"))
 				.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-				.redirectUri("http://localhost:8085/login/oauth2/code/apiClientName")
-//				.redirectUri("http://auth-server:8085/login/oauth2/code/apiClientName")
-//				.scope(OidcScopes.OPENID)
-				.scope(OidcScopes.PROFILE)
-//				.scope(OidcScopes.EMAIL)
-				.clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build()).build();
+				.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
+				.redirectUri("http://localhost:8085/login/oauth2/code/articles-client-oidc")
+				.redirectUri("http://localhost:8085/authorized").scope(OidcScopes.OPENID).scope("articles.read") // Custom
+//				.clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
+				.build();
 		return new InMemoryRegisteredClientRepository(registeredClient);
+	}
+
+	// Configuring our authorization
+	// apply the default OAuth security and generate a default form login page
+	@Bean
+	@Order(Ordered.HIGHEST_PRECEDENCE)
+	public SecurityFilterChain authServerSecurityFilterChain(HttpSecurity http) throws Exception {
+		// This code line gives all the default line of APIs like:
+		// /api, /token, JWT, etc. can add customs also
+		OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
+		return http.formLogin(Customizer.withDefaults()).build();
 	}
 
 	// Below 3 methods are standard in 90% case we don't need to change it.
 	// Until need to change algorithm (RSA)
+	// Each authorization server needs its signing key for tokens to keep a proper
+	// boundary between security domains. Let’s generate a 2048-byte RSA key:
 	@Bean
 	public JWKSource<SecurityContext> jwkSource() throws NoSuchAlgorithmException {
 		RSAKey rsaKey = generateRsa();
 		JWKSet jwkSet = new JWKSet(rsaKey);
 		return (jwkSelector, securityContext) -> jwkSelector.select(jwkSet);
 	}
-	
-	@Bean 
-	public JwtDecoder jwtDecoder(JWKSource<SecurityContext> jwkSource) {
-		return OAuth2AuthorizationServerConfiguration.jwtDecoder(jwkSource);
-	}
-	
+
 	private static RSAKey generateRsa() throws NoSuchAlgorithmException {
 		KeyPair keyPair = generateRsaKey();
 		RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
@@ -96,13 +105,25 @@ public class AuthorizationServerConfig {
 		return keyPairGenerator.generateKeyPair();
 	}
 
-	// About OAuth server provider
+	// Authorization server unique issuer URL
+	// add an “127.0.0.1 auth-server” entry in our /etc/hosts file. This allows us to run the client and the auth server on our local machine, and avoids problems with session cookie overwrites between the two.
 	@Bean
-	public AuthorizationServerSettings providerSettings() {
-//		return AuthorizationServerSettings.builder().issuer("http://auth-server:9000").build();
-		return AuthorizationServerSettings.builder().issuer("http://localhost:9000").build();
+	public AuthorizationServerSettings authorizationServerSettings() {
+		return AuthorizationServerSettings.builder()
+				.issuer("http://auth-server:9000").build();
+//	      		.issuer("http://localhost:9000").build();
 	}
-	
+
+	@Bean
+	public JwtDecoder jwtDecoder(JWKSource<SecurityContext> jwkSource) {
+		return OAuth2AuthorizationServerConfiguration.jwtDecoder(jwkSource);
+	}
+
+//	@Bean
+//	public AuthorizationServerSettings providerSettings() {
+////		return AuthorizationServerSettings.builder().issuer("http://auth-server:9000").build();
+//		return AuthorizationServerSettings.builder().issuer("http://localhost:9000").build();
+//	}
 
 	// Hard coded users
 //	@Bean
