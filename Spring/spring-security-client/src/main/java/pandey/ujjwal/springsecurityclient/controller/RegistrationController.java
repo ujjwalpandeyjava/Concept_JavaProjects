@@ -44,24 +44,25 @@ public class RegistrationController {
 	}
 
 	@PostMapping("/register")
-	public ResponseEntity<Map<String, String>> registerUser(@RequestBody UserModel userModel, final HttpServletRequest req) {
+	public ResponseEntity<Map<String, String>> registerUser(@RequestBody UserModel userModel,
+			final HttpServletRequest req) {
 		System.out.println("\n\nRegister url: " + userModel);
 		Map<String, String> response = new HashMap<>();
 		Map<String, Object> newUser = userService.registerUser(userModel);
-		
+
 		System.out.println("newUser: " + newUser);
 		if (newUser.get("MESSAGE").toString().equalsIgnoreCase("PasswordMismatched")) {
 			response.put("MESSAGE", "Confirm Password Mismatched!");
 			return new ResponseEntity<Map<String, String>>(response, HttpStatus.NOT_ACCEPTABLE);
 		} else if (newUser.get("MESSAGE").toString().equalsIgnoreCase("DUPLICATE_ENTRY")) {
-			response.put("MESSAGE","FAILED: ID already exists!");
+			response.put("MESSAGE", "FAILED: ID already exists!");
 			response.put("NEXT_ACTION", "Use other e-mail account");
 			return new ResponseEntity<Map<String, String>>(response, HttpStatus.FOUND);
 		} else {
 			registrationCompleteEvent.setUser((User) newUser.get("user"));
 			registrationCompleteEvent.setApplicationActivationUrl(ReqResRelated.getApplicationURl(req));
 			appEvntPublisher.publishEvent(registrationCompleteEvent);
-			
+
 			response.put("MESSAGE", "SUCCESS");
 			response.put("NEXT_ACTION", "Check e-mail to activate account");
 			return new ResponseEntity<Map<String, String>>(response, HttpStatus.CREATED);

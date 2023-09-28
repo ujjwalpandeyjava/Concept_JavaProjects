@@ -16,29 +16,11 @@ spring:
    enabled: true
  security:
     oauth2:
-      client:
-        registration: # Client name
-          apiClientName:
-           client-name: apiClientName
-           client-id: api-client
-           client-secret: secret
-           provider: spring
-           authorization-grant-type: authorization_code
-           client-authentication-method: client_secret_basic
-           #redirect-uri: "http://localhost:8085/login/oauth2/code/{registrationId}"
-           redirect-uri: "http://localhost:8085/login/oauth2/code/apiClientName"
-           #scope: profile,email,openid
-           scope: profile
-          api-client-authorization-code:
-           provider: spring
-           client-id: api-client
-           client-secret: secret
-           authorization-grant-type: authorization_code
-           redirect-uri: "http://localhost:8085/authorized"
-           #scope: profile,email,openid
-           scope: profile
-           client-name: api-client-authorization-code
-        provider:
-          spring:
-            #issuer-uri: http://auth-server:9000
-            issuer-uri: http://localhost:9000
+     client:
+      registration:
+       google:
+        client-id: 852560245449-07uajfkd44cb7cc06f6knspps4e5anq2.apps.googleusercontent.com
+        client-secret: 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
+       github:
+        client-id: bbf5a8c0a34a64c1a23a
+        client-secret: 455910fc9a5e5fb469f1c8491f4e2af735c26748
