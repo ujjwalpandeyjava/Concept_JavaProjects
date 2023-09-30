@@ -1,7 +1,10 @@
 server:
+ address: auth-server
  port: 9000
  
 spring:
+ application:
+  url: http://auth-server:9000
  #security:
   #user:
    #name: ujjwal

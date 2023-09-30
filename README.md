@@ -22,4 +22,9 @@ These are the java practice codes.
       	-  
 
 ## Spring 
-	4 different ways to connect DB using Spring, DI, xml, annotation, etc.
+	1. Oauth2.0CustomRegisterLogin:
+		- Register and login with form
+		- Register and login with Google
+		- Register and login with Github
+			>> Google and Github Register will save the details in server also for tracking and future use.
+	2. Different ways to connect DB using Spring, DI, xml, annotation, etc.
