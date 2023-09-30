@@ -2,9 +2,12 @@ package pandey.ujjwal.springsecurityclient.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import pandey.ujjwal.springsecurityclient.enums.Provider;
 
 @Entity
 public class User {
@@ -19,6 +22,8 @@ public class User {
 	private String password;
 	private String role = "client";
 	private boolean enabled = false;
+	@Enumerated(EnumType.STRING)
+	private Provider provider = Provider.LOCAL;
 
 	public User() {
 		super();

@@ -20,10 +20,6 @@ public class NestedWebScraperWithMemoization {
 	private Map<String, Boolean> memo = new HashMap<>();
 	Set<String> uniqueLinks = new TreeSet<>();
 
-	public String getHomeURLString() {
-		return homeURLString;
-	}
-
 	public void setHomeURLString(String homeURLString) {
 		this.homeURLString = homeURLString;
 	}
@@ -46,6 +42,7 @@ public class NestedWebScraperWithMemoization {
 			return memo.get(scrapingURL);
 		} else {
 			System.out.println("\nNew Scrapping: " + scrapingURL);
+			memo.put(scrapingURL, true);
 			try {
 				URL url = new URL(scrapingURL);
 				HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -54,10 +51,8 @@ public class NestedWebScraperWithMemoization {
 				int responseCode = con.getResponseCode();
 				String nestedUrlHome = url.getProtocol() + "://" + url.getHost();
 
-				System.out
-						.println("code: " + responseCode + " | Same home: " + getHomeURLString().equals(nestedUrlHome));
-				if (responseCode == 200 && getHomeURLString().equals(nestedUrlHome)) {
-					memo.put(scrapingURL, true);
+				System.out.println("code: " + responseCode + " | Same home: " + homeURLString.equals(nestedUrlHome));
+				if (responseCode == 200 && homeURLString.equals(nestedUrlHome)) {
 					String inputLine;
 					BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 					StringBuffer htmlContent = new StringBuffer();
@@ -76,16 +71,16 @@ public class NestedWebScraperWithMemoization {
 					System.out.println("Total links found: " + uniqueLinks.size());
 					uniqueLinks.stream().forEach(System.out::println);
 				} else {
-					memo.put(scrapingURL, false);
 					System.out.println("Error: " + responseCode);
 				}
-				if (scrapeNested)
+				if (scrapeNested && uniqueLinks.size() > 1)
 					for (String nestedLink : uniqueLinks) {
 						System.out.println("\n++++++++++ next Link ++++++++");
 						System.out.println(nestedLink);
 						nestedScrape(nestedLink, scrapeNested);
 					}
 			} catch (Exception e) {
+				memo.put(scrapingURL, true);
 				e.printStackTrace();
 			}
 			return true;

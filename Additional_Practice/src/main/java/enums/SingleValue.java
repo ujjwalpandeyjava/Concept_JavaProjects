@@ -1,12 +1,12 @@
 package enums;
 
-public enum MailDetails {
+public enum SingleValue {
 	FROM("ujjwalpandey.aps@gmail.com"), CODE("esejextamtqoknpd"), TO("SomeOne");
 
 	private String value;
 
 	// enum constructor - Cannot be public or protected
-	private MailDetails(String value) {
+	private SingleValue(String value) {
 		this.value = value;
 	}
 
