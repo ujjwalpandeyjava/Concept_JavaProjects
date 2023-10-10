@@ -30,11 +30,13 @@ public class DefaultUserServiceImpl implements DefaultUserService {
 	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	@Override
+	// Gets called when the user login via any mean, we override to check user exist in DB with active details.
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		User user = userRepo.findByEmail(email);
 		if (user == null)
 			throw new UsernameNotFoundException("Invalid username or password.");
-		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRole()));
+		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
+				mapRolesToAuthorities(user.getRole()));
 	}
 
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Set<Role> roles) {

@@ -1,7 +1,7 @@
 package pandey.ujjwal.Oauth2.CustomRegisterLogin.enums;
 
 public enum UserTypes {
-	USER("USER"), ADMIN("ADMIN");
+	SUPER_ADMIN("SUPER_ADMIN"), USER("USER"), ADMIN("ADMIN");
 
 	private String value;
 

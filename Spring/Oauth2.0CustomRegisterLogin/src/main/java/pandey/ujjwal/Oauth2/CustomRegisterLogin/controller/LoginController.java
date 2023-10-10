@@ -37,4 +37,18 @@ public class LoginController {
 		System.out.println(loadUserByUsername);
 	}
 
+	@GetMapping("/superAdmin")
+	public String loginPageSuperAdmin() {
+		return "I am 'Super Admin', I can access /superadmin, /admin, /user";
+	}
+
+	@GetMapping("/admin")
+	public String loginPageAdmin() {
+		return "I am 'Admin', I can access /admin, /user";
+	}
+
+	@GetMapping("/user")
+	public String loginPageUser() {
+		return "I am 'User', I can access /user";
+	}
 }
