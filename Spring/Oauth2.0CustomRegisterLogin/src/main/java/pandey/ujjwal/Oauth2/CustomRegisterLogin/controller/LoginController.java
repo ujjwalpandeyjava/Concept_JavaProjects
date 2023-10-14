@@ -16,7 +16,6 @@ import pandey.ujjwal.Oauth2.CustomRegisterLogin.service.DefaultUserService;
 public class LoginController {
 	@Autowired
 	private DefaultUserService userService;
-
 //	@Autowired
 //	private UserRepository userRepo;
 

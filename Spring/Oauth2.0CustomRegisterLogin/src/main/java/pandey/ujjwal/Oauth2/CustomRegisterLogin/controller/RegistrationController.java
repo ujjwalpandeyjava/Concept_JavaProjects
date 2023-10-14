@@ -12,6 +12,7 @@ import pandey.ujjwal.Oauth2.CustomRegisterLogin.service.DefaultUserService;
 @Controller
 @RequestMapping("/registration")
 public class RegistrationController {
+
 	private DefaultUserService userService;
 
 	public RegistrationController(DefaultUserService userService) {
@@ -19,6 +20,7 @@ public class RegistrationController {
 		this.userService = userService;
 	}
 
+	// Used to pre-populate a model
 	@ModelAttribute("user")
 	public UserRegisteredDTO userRegistrationDto() {
 		return new UserRegisteredDTO();
@@ -26,6 +28,7 @@ public class RegistrationController {
 
 	@GetMapping
 	public String showRegistrationForm() {
+//		return "redirect:/register";
 		return "register";
 	}
 

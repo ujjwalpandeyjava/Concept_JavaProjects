@@ -60,10 +60,11 @@ public class WebSecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http.cors(cors -> cors.disable()) // Cross-Origin Resource Sharing
 				.csrf(csrf -> csrf.disable()) // Cross-Site Request Forgery
-				.authorizeHttpRequests(authorize -> authorize
-						.requestMatchers("", "/", "/home", "/register", "/register/verifyRegistration").permitAll()
-						.anyRequest().authenticated())
-				.oauth2Login(Customizer.withDefaults()).formLogin(Customizer.withDefaults()).build();
+				.authorizeHttpRequests(authorize -> {
+					authorize.requestMatchers("", "/", "/home", "/index").permitAll();
+					authorize.requestMatchers("/register", "/register/**").permitAll();
+					authorize.anyRequest().authenticated();
+				}).oauth2Login(Customizer.withDefaults()).formLogin(Customizer.withDefaults()).build();
 	}
 
 	// Hard coded users working fine for formLogin
