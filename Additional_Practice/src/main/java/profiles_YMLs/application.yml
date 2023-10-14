@@ -1,0 +1,35 @@
+#Can define different properties for different profiles:
+
+
+logging:
+  level:
+    root: TRACE	# Default
+    com.example: ERROR	#Specific package or class, 
+
+spring:
+  profiles:
+    active: "dev"
+  main:
+    banner-mode: "off"
+
+server:
+  port: 8085
+
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://localhost/test
+    username: root
+    password: password
+
+---
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:mysql://localhost/prod
+    username: root
+    password: password
+    
+#Example, `datasource` configuration for each profile (`dev` and `prod`).
+#Each profile has a different database URL.
