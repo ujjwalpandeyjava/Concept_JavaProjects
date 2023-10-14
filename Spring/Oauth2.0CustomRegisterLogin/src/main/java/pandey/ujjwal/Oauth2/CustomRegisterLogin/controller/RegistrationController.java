@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pandey.ujjwal.Oauth2.CustomRegisterLogin.dto.UserRegisteredDTO;
+import pandey.ujjwal.Oauth2.CustomRegisterLogin.model.UserRegisteredDTO;
 import pandey.ujjwal.Oauth2.CustomRegisterLogin.service.DefaultUserService;
 
 @Controller

@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pandey.ujjwal.Oauth2.CustomRegisterLogin.dao.UserRepository;
+import pandey.ujjwal.Oauth2.CustomRegisterLogin.repo.UserRepository;
 
 @Controller
 @RequestMapping("/dashboard")
@@ -27,7 +27,7 @@ public class DashboardController {
 					user.getAttribute("name") != null ? user.getAttribute("name") : user.getAttribute("login"));
 		} else {
 			User user = (User) securityContext.getAuthentication().getPrincipal();
-			pandey.ujjwal.Oauth2.CustomRegisterLogin.model.User users = userRepo.findByEmail(user.getUsername());
+			pandey.ujjwal.Oauth2.CustomRegisterLogin.entity.User users = userRepo.findByEmail(user.getUsername());
 			model.addAttribute("userDetails", users.getName());
 		}
 		return "dashboard";

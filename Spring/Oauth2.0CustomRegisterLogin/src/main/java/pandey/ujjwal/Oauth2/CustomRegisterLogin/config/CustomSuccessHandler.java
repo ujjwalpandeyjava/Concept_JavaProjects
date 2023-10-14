@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import pandey.ujjwal.Oauth2.CustomRegisterLogin.dao.UserRepository;
-import pandey.ujjwal.Oauth2.CustomRegisterLogin.dto.UserRegisteredDTO;
+import pandey.ujjwal.Oauth2.CustomRegisterLogin.model.UserRegisteredDTO;
+import pandey.ujjwal.Oauth2.CustomRegisterLogin.repo.UserRepository;
 import pandey.ujjwal.Oauth2.CustomRegisterLogin.service.DefaultUserService;
 
 @Component

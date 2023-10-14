@@ -12,11 +12,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import pandey.ujjwal.Oauth2.CustomRegisterLogin.dao.RoleRepository;
-import pandey.ujjwal.Oauth2.CustomRegisterLogin.dao.UserRepository;
-import pandey.ujjwal.Oauth2.CustomRegisterLogin.dto.UserRegisteredDTO;
-import pandey.ujjwal.Oauth2.CustomRegisterLogin.model.Role;
-import pandey.ujjwal.Oauth2.CustomRegisterLogin.model.User;
+import pandey.ujjwal.Oauth2.CustomRegisterLogin.entity.Role;
+import pandey.ujjwal.Oauth2.CustomRegisterLogin.entity.User;
+import pandey.ujjwal.Oauth2.CustomRegisterLogin.model.UserRegisteredDTO;
+import pandey.ujjwal.Oauth2.CustomRegisterLogin.repo.RoleRepository;
+import pandey.ujjwal.Oauth2.CustomRegisterLogin.repo.UserRepository;
 import pandey.ujjwal.Oauth2.CustomRegisterLogin.service.DefaultUserService;
 
 @Service

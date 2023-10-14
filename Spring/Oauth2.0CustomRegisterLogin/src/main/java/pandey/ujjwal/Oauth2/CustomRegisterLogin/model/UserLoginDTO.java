@@ -1,4 +1,4 @@
-package pandey.ujjwal.Oauth2.CustomRegisterLogin.dto;
+package pandey.ujjwal.Oauth2.CustomRegisterLogin.model;
 
 public class UserLoginDTO {
 	private String username;

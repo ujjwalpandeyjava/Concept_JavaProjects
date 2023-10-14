@@ -1,4 +1,4 @@
-package pandey.ujjwal.Oauth2.CustomRegisterLogin.model;
+package pandey.ujjwal.Oauth2.CustomRegisterLogin.entity;
 
 import java.util.HashSet;
 import java.util.Set;
