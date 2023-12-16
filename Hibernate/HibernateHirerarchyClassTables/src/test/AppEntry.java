@@ -8,7 +8,7 @@ import model.Book;
 import model.Comic;
 import model.Literature;
 
-public class Test {
+public class AppEntry {
 
 	public static void main(String[] args) {
 		Configuration cfg = new Configuration().configure("test/hibernate.cfg.xml");

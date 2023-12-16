@@ -1,0 +1,4 @@
+Nov 17, 2023 11:48:48 AM loggerExample.AppEntryLogger main
+WARNING: This is a warning message.
+Nov 17, 2023 11:48:48 AM loggerExample.AppEntryLogger main
+SEVERE: This is a severe error message.

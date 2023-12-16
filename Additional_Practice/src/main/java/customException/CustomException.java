@@ -5,7 +5,7 @@ public class CustomException {
 		try {
 			ValidateAge(9);
 		} catch (Exception e) {
-			System.out.println("Exception fires...\n" + e);
+			System.out.println("Exception fires here ....\n" + e);
 		}
 	}
 

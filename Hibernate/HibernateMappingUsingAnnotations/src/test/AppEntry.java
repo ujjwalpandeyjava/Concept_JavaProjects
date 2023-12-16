@@ -6,7 +6,7 @@ import org.hibernate.cfg.Configuration;
 
 import model.Employee;
 
-public class Test {
+public class AppEntry {
 
 	public static void main(String[] args) {
 
