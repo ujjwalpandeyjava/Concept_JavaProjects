@@ -1,4 +1,4 @@
-package customException;
+package exceptions.customException;
 
 public class InvalidAgeException extends Exception {
 	private static final long serialVersionUID = 1L;

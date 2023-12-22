@@ -1,4 +1,4 @@
-package jackson;
+package objectToJson.jackson;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -7,8 +7,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-public class NewObjectViaJackson {
-	public static void main(String[] args) throws JsonMappingException, JsonProcessingException {
+public class Jackson_Eg {
+	public static void main(String[] args) {
+		try {
+			jacksonExample();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void jacksonExample() throws JsonMappingException, JsonProcessingException {
 		ObjectMapper objectMapper = new ObjectMapper();
 		ArrayNode rootArrayNode = objectMapper.createArrayNode();
 
