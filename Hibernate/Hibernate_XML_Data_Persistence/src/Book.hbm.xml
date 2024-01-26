@@ -6,11 +6,12 @@
 
 <hibernate-mapping>
 	<class name="model.Book" table="allbooks" discriminator-value="General">
-
-		<id name="bookID" column="bookID"><generator class="increment"></generator></id>
+		<id name="bookID" column="bookID">
+			<generator class="increment"></generator>
+		</id>
 		<discriminator column="BookType" type="string" />
-		<property name="name" column="bookName" />
-		<property name="price" column="bookPrice" />
+		<property name="name" column="bookName" type="string"/>
+		<property name="price" column="bookPrice" type="string"/>
 		
 		<!-- Child classes -->
 		<subclass name="model.Literature" discriminator-value="Literature">

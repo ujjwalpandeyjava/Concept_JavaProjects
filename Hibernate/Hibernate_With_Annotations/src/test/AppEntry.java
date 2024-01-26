@@ -13,13 +13,11 @@ public class AppEntry {
 		Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
 		SessionFactory sessFact = cfg.buildSessionFactory();
 		Session sess = sessFact.openSession();
-		Employee obj1 = new Employee("Ujjwal", "IT", "CEO", 5000000);
-		Employee obj2 = new Employee("Suraj", "Sports", "Batsman", 90000);
-		sess.beginTransaction();
+		Employee obj1 = new Employee("Ujjwal 1", "IT", "CEO", 5000000);
+		Employee obj2 = new Employee("Suraj 1", "Sports", "Batsman", 90000);
+		sess.beginTransaction(); // No need to first create and then commit transaction
 		sess.persist(obj1);
 		sess.persist(obj2);
 		sess.getTransaction().commit();
-		//Way 2 :No need to first create and then commit tansation.
 	}
-
 }

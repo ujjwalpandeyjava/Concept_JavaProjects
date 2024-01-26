@@ -6,15 +6,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
+// Annotations from 'javax' persistence
 @Entity
 @Table(name = "EmployeeDataTable") // table name
 public class Employee {
 
-	// All annotations to be imported from javax persistence class.
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "empID")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "emp_gen")
+    @TableGenerator(name = "emp_gen", table = "id_gen", pkColumnName = "gen_name", valueColumnName = "gen_val", initialValue = 100, allocationSize = 1)
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@Column
 	private int id;
 
 	@Column(name = "empName")
@@ -28,6 +31,18 @@ public class Employee {
 
 	@Column(name = "empSalary")
 	private int salary;
+
+	public Employee() {
+		super();
+	}
+
+	public Employee(String name, String dept, String desig, int salary) {
+		super();
+		this.name = name;
+		this.dept = dept;
+		this.desig = desig;
+		this.salary = salary;
+	}
 
 	public int getId() {
 		return id;
@@ -69,23 +84,10 @@ public class Employee {
 		this.desig = desig;
 	}
 
-	public Employee() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", salary=" + salary + ", name=" + name + ", dept=" + dept + ", desig=" + desig
 				+ "]";
-	}
-
-	public Employee(String name, String dept, String desig, int salary) {
-		super();
-		this.name = name;
-		this.dept = dept;
-		this.desig = desig;
-		this.salary = salary;
 	}
 
 }
