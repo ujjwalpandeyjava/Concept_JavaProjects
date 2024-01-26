@@ -1,9 +1,7 @@
 package model;
 
-public class Literature extends Book {
-	 String authName;
-	
-	
+public class Comic extends Book {
+	String authName;
 
 	public String getAuthName() {
 		return authName;
@@ -13,9 +11,9 @@ public class Literature extends Book {
 		this.authName = authName;
 	}
 
-	public Literature() {
+	public Comic() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 }

@@ -6,6 +6,7 @@ public class CustomException {
 			ValidateAge(9);
 		} catch (Exception e) {
 			System.out.println("Exception fires here ....\n" + e);
+			e.printStackTrace();
 		}
 	}
 

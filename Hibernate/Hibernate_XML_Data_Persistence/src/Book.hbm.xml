@@ -3,14 +3,16 @@
 
 <!-- New table for every class and all classes are interconnected with <union-subclass>. 
 	(Only different tables with same extended attributes.) -->
+
 <hibernate-mapping>
-	<class name="model.Book" table="allbooks"
-		discriminator-value="General">
+	<class name="model.Book" table="allbooks" discriminator-value="General">
+
 		<id name="bookID" column="bookID"><generator class="increment"></generator></id>
 		<discriminator column="BookType" type="string" />
 		<property name="name" column="bookName" />
 		<property name="price" column="bookPrice" />
-		<!-- Child classes. -->
+		
+		<!-- Child classes -->
 		<subclass name="model.Literature" discriminator-value="Literature">
 			<property name="authName" column="litAuthName" />
 		</subclass>

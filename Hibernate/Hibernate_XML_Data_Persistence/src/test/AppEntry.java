@@ -10,6 +10,9 @@ import model.Literature;
 
 public class AppEntry {
 
+	
+	//	With XML configurations.
+	// With Transaction
 	public static void main(String[] args) {
 		Configuration cfg = new Configuration().configure("test/hibernate.cfg.xml");
 		SessionFactory sessFact = cfg.buildSessionFactory();
@@ -35,7 +38,7 @@ public class AppEntry {
 		sess.persist(lit);
 
 		sess.getTransaction().commit();
-		System.out.println("Presisted...");
+		System.out.println("Presisted... you can close console.");
 	}
 
 }
