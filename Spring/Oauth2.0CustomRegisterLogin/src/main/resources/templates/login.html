@@ -34,6 +34,25 @@
 		color: black;
 		text-decoration: none;
 	}
+	.loginWith3rdParty{
+   	    display: flex;
+    	justify-content: space-around;
+    	flex-direction: row;
+    	flex-wrap: nowrap;
+    	overflow: hidden;
+	}
+	.loginWith3rdParty >a{
+    	color: black;
+	    text-decoration: none;
+		font-weight: bold;	
+	}
+	.loginWith3rdParty >a:nth-child(1) {
+	}	
+	.loginWith3rdPartyLine{
+		border: 1px solid gray
+	}
+	
+
 </style>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -45,8 +64,6 @@
 	<div class="panel">
 		<div th:if="${param.error}"><div class="alert alert-info">Either password or EmailId entered is incorrect!</div></div>
 		<div class="loginName">Login</div>
-		<div class="loginWith"><a th:href="@{/oauth2/authorization/google}">Login with Google</a></div>
-		<div class="loginWith"><a th:href="@{/oauth2/authorization/github}">Login with GitHub</a></div>
 		<form class="loginWith" th:action="@{/login}" method="post" th:object="${user}">
 			<div class="form-group">
 				<label class="control-label" for="email">Email</label>
@@ -61,6 +78,11 @@
 				<span>New User? <a href="/" th:href="@{/registration}">Register here</a></span>
 			</div>
 		</form>
+		<div class="loginWith loginWith3rdParty">
+			<a th:href="@{/oauth2/authorization/google}">Login with Google</a>
+			<div class="loginWith3rdPartyLine"></div>
+			<a th:href="@{/oauth2/authorization/github}">Login with GitHub</a>
+		</div>
 	</div>
 </body>
 

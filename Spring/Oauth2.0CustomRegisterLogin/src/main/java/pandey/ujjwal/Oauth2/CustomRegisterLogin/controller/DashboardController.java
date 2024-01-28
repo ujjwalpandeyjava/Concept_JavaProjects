@@ -22,6 +22,11 @@ public class DashboardController {
 	public String displayDashboard(Model model) {
 		SecurityContext securityContext = SecurityContextHolder.getContext();
 		if (securityContext.getAuthentication().getPrincipal() instanceof DefaultOAuth2User) {
+			System.out.println("1. +++++++");
+			System.out.println(securityContext.getAuthentication());
+			System.out.println("2. +++++++");
+			System.out.println(securityContext.getAuthentication().getPrincipal());
+			System.out.println("3. +++++++");
 			DefaultOAuth2User user = (DefaultOAuth2User) securityContext.getAuthentication().getPrincipal();
 			model.addAttribute("userDetails",
 					user.getAttribute("name") != null ? user.getAttribute("name") : user.getAttribute("login"));
