@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="classTypes/" kind="src" path="Additional_Practice/src/main/java"/>
+	<classpathentry kind="src" path="Additional_Practice/src/main/java/classTypes"/>
+	<classpathentry kind="src" path="Additional_Practice/src/test/java"/>
+	<classpathentry kind="src" path="Hibernate/HibernateHirerarchyClassTables/src"/>
+	<classpathentry kind="src" path="Hibernate/HibernateMappingUsingAnnotations/src"/>
+	<classpathentry kind="src" path="Hibernate/HibernateSimpleUsingHBM/src"/>
+	<classpathentry kind="src" path="Spring/Oauth2.0CustomRegisterLogin/src/main/java"/>
+	<classpathentry kind="src" path="Spring/Oauth2.0CustomRegisterLogin/src/test/java"/>
+	<classpathentry kind="src" path="Spring/Spring_DataBaseWork/src/main/java"/>
+	<classpathentry kind="src" path="Spring/Spring_DataBaseWork/src/test/java"/>
+	<classpathentry kind="src" path="Spring/spring-aop-demo/src/main/java"/>
+	<classpathentry kind="src" path="Spring/SpringBeanPractice/src/main/java"/>
+	<classpathentry kind="src" path="Spring/SpringBeanPractice/src/test/java"/>
+	<classpathentry kind="src" path="Spring/spring-security-client/src/main/java"/>
+	<classpathentry kind="src" path="Spring/spring-security-client/src/test/java"/>
+	<classpathentry kind="src" path="Spring/spring-security-OAuth-authorization-server/src/main/java"/>
+	<classpathentry kind="src" path="Spring/spring-security-OAuth-authorization-server/src/test/java"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="Spring/Oauth2.0CustomRegisterLogin/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="Spring/spring-security-client/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="Spring/spring-security-OAuth-authorization-server/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="output" path="Additional_Practice/target/classes"/>
+</classpath>

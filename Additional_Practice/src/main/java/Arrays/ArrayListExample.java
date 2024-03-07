@@ -1,12 +1,24 @@
 package Arrays;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 class ArrayListExample {
 
 	public static void main(String args[]) {
+
+		List<String> list0 = List.of("Hello", "World");
+		System.out.println(list0);
+		List<String> list = Arrays.asList("Hello", "World");
+		System.out.println(list);
+
+		List<String> list2 = new ArrayList<>(Arrays.asList("Hello", "World"));
+		System.out.println(list2);
+		System.out.println(list2.toArray(new String[0]));
+		System.out.println(list2.stream().toArray(String[]::new));
+
 		ArrayList<String> color = new ArrayList<String>();
 		color.add("Red");
 		color.add("Pink");
