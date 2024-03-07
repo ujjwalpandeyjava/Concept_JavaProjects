@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+	<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<title>Registration form</title>
+</head>
+<style>
+    .navbar {
+        background-color: #d9edf7;
+    }
+    .form-radio{
+   	    display: flex;
+	    flex-direction: row;
+	    flex-wrap: wrap;
+	    align-content: center;
+	    justify-content: flex-start;
+	    align-items: center;
+	    gap: 0.6em;
+    }
+    .privilegeOptions li{
+    	list-style-type: '✅';
+    	padding-inline: 0 1.25em;
+    	cursor: pointer;
+    	font-weight: bolder;
+    	font-size: 1.25em;
+    }
+</style>
+
+<body>
+
+    <!-- create navigation bar (header) -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+               <h2>Oauth2.0</h2>
+            </div>
+        </div>
+    </nav>
+
+    <br><br><br><br><br><br><br>
+    <!-- Create HTML registration form -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <!-- message -->
+                <div th:if="${param.success}">
+                  <div class="alert alert-info">You've successfully registered to our awesome app!</div>
+                </div> 
+                <h1>Registration</h1>
+                <!-- th:object="${user}" : must match the @modalAttribte name  -->
+                <form th:action="@{/registration/}" method="post" th:object="${userReg}">
+                    <div class="form-group">
+                        <label class="control-label" for="firstName">Full Name</label>
+                        <input id="firstName" class="form-control" th:field="*{name}" required autofocus="autofocus" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="email">Email</label>
+						<input id="email" class="form-control" th:field="*{email_id}" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="password">Password</label>
+						<input id="password" class="form-control" type="password" th:field="*{encodedPassword}" required />
+                    </div>
+                    <fieldset class="form-group form-radio">
+				        <legend>Select User Type:</legend>
+				        <div>
+				            <input type="radio" th:field="*{userRole}" value="SUPER_ADMIN" id="SUPER_ADMIN"/>
+				            <label for="SUPER_ADMIN">SUPER ADMIN</label>
+				        </div>
+				        <div>
+				            <input type="radio" th:field="*{userRole}" value="ADMIN" id="ADMIN"/>
+				            <label for="ADMIN">ADMIN</label>
+				        </div>
+				        <div>
+				            <input type="radio" th:field="*{userRole}" value="USER" id="USER"/>
+				            <label for="USER">USER</label>
+				        </div>
+				        <div>
+				            <input type="radio" th:field="*{userRole}" value="GUEST" id="GUEST"/>
+				            <label for="GUEST">USER</label>
+				        </div>
+				        <div>
+				            <input type="radio" th:field="*{userRole}" value="SUPPORT" id="SUPPORT"/>
+				            <label for="SUPPORT">SUPPORT</label>
+				        </div>
+				    </fieldset>
+				    
+	                <fieldset class="form-group">
+				        <legend>Select privileges:</legend>
+				           <div class="form-group">
+	                        <label class="control-label" for="privileges">Privileges</label>
+							<input id="privileges" class="form-control" type="text" th:field="*{privileges}" required />
+	                    </div>
+	                    <ul id="privilegsListToSelect" class="form-radio privilegeOptions">
+					    	<li th:each="ep : ${listOfPrivileges}" th:text="${ep}" onclick="appendText(this)"></li>
+						</ul>
+				    </fieldset>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                        <span>Already registered? <a href="/" th:href="@{/login}">Login here</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+	function appendText(element) {
+	    var inputField = document.getElementById("privileges");
+	    var inputFieldValue = inputField.value;
+	    if(!inputFieldValue.split(",").includes(element.innerText)){
+	    	inputField.value += ((inputField.value.length > 0) ? "," : "" )+element.innerText;
+	    	// element.remove();
+	    } else {
+	        
+	    }
+	}
+</script>
+</html>

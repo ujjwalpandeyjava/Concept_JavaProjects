@@ -1,0 +1,78 @@
+#footer {
+  width: 100%;
+  height: auto;
+  margin: 30px auto 0;
+  padding: 70px 0;
+  background-color: rgb(13, 13, 13);
+}
+#footer .footer-menu {
+  height: inherit;
+  padding: 0 20px;
+  margin-right: 10rem;
+  margin-left: 10rem;
+}
+#footer .footer-menu .ft-submenu-header {
+  margin-bottom: 13px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+}
+#footer .footer-menu .ft-submenu-list {
+  height: auto;
+  padding: 0;
+}
+#footer .footer-menu .ft-submenu-list .ft-submenu-item {
+  height: 26px;
+}
+#footer .footer-menu .ft-submenu-list .ft-submenu-item .ft-submenu-link {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 13px;
+}
+#footer .footer-menu .ft-submenu-list .ft-submenu-item .ft-submenu-link:hover {
+  color: white;
+}
+#footer .footer-menu .ft-subscribe-text {
+  height: 26px;
+  color: rgba(255, 255, 255, 0.3);
+}
+#footer .footer-menu .ft-subscribe-btn {
+  display: block;
+  width: 5rem;
+  height: 3rem;
+  margin-top: 2rem;
+  font-size: 12px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.3);
+  text-align: center;
+  line-height: 40px;
+}
+#footer .footer-menu .ft-subscribe-btn:hover, #footer .footer-menu .ft-subscribe-btn:focus {
+  color: black;
+  background-color: white;
+  text-decoration: none;
+}
+#footer .divider {
+  margin-right: 10rem;
+  margin-left: 10rem;
+}
+#footer .social {
+  margin: 20px 0;
+  text-align: center;
+}
+#footer .social a {
+  color: white;
+  text-decoration: none;
+}
+#footer .social .icon {
+  margin: 0 15px;
+}
+#footer .copyright p {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 13px;
+  text-align: center;
+  break-word: break-word;
+  height: 26px;
+  line-height: 26px;
+}/*# sourceMappingURL=footer.css.map */
