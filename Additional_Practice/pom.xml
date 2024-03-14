@@ -5,14 +5,10 @@
 	<groupId>pandey.ujjwal</groupId>
 	<artifactId>Additional_Practice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 	<name>Additional_Practice</name>
 	<description>Java practiced organized files</description>
-
 	<dependencies>
-
 		<!-- Testing -->
-		<!-- https://mvnrepository.com/artifact/junit/junit (jUnit 4) -->
 		<!-- <dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -25,12 +21,11 @@
 			<version>5.10.1</version>
 			<scope>test</scope>
 		</dependency>
-		
-		
-		<dependency>
+
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+		</dependency>-->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
@@ -39,7 +34,6 @@
 		</dependency>
 
 
-		<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
@@ -58,8 +52,7 @@
 			<version>5.0.0</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/me.paulschwarz/spring-dotenv to
-		read env values-->
+		<!-- pring-dotenv to read env values-->
 		<dependency>
 			<groupId>me.paulschwarz</groupId>
 			<artifactId>spring-dotenv</artifactId>
@@ -69,10 +62,7 @@
 		<!--
 			Chat-GPT integration
 			https://github.com/TheoKanning/openai-java
-		 	https://mvnrepository.com/artifact/com.theokanning.openai-gpt3-java
 		 -->
-		<!--
-		https://mvnrepository.com/artifact/com.theokanning.openai-gpt3-java/service -->
 		<dependency>
 			<groupId>com.theokanning.openai-gpt3-java</groupId>
 			<artifactId>service</artifactId>
@@ -88,36 +78,25 @@
 		</dependency>
 
 		<!-- POJO to JSON -->
-		<!-- https://mvnrepository.com/artifact/org.json/json -->
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
-			<version>20231013</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.10.1</version>
+			<version>20240303</version>
 		</dependency>
 
-
+		<!-- -->
 		<dependency>
-	        <groupId>org.apache.commons</groupId>
-	        <artifactId>commons-lang3</artifactId>
-	        <version>3.14.0</version>
-	    </dependency>
-    
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.14.0</version>
+		</dependency>
+
 		<!-- Web Scrapping-->
-		<!--
-		https://mvnrepository.com/artifact/org.apache.httpcomponents.client5/httpclient5 -->
 		<dependency>
 			<groupId>org.apache.httpcomponents.client5</groupId>
 			<artifactId>httpclient5</artifactId>
 			<version>5.2.1</version>
 		</dependency>
-		<!--
-		https://mvnrepository.com/artifact/org.apache.httpcomponents.client5/httpclient5-fluent -->
 		<dependency>
 			<groupId>org.apache.httpcomponents.client5</groupId>
 			<artifactId>httpclient5-fluent</artifactId>
