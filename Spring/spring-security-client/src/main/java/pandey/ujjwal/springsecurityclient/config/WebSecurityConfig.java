@@ -55,7 +55,7 @@ public class WebSecurityConfig {
 		return source;
 	}
 
-	// Configuring our authorization with autorization server
+	// Configuring our authorization with authorization server
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http.cors(cors -> cors.disable()) // Cross-Origin Resource Sharing

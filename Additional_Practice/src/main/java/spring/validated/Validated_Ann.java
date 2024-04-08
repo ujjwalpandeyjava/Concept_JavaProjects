@@ -1,10 +1,11 @@
 package spring.validated;
 
-import org.springframework.validation.annotation.Validated;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-public class ValidatedAnnotation_Entry {
+import org.springframework.validation.annotation.Validated;
+
+public class Validated_Ann {
 
 	public static void main(String[] args) {
 	}
@@ -28,9 +29,7 @@ public class ValidatedAnnotation_Entry {
 	@Controller
 	public class UserController {
 		@RequestMapping(value = "/stepOne", method = RequestMethod.POST)
-		public String stepOne(
-				@Validated(UserAccount.ValidationStepOne.class) @ModelAttribute("useraccount") UserAccount useraccount,
-				BindingResult result) {
+		public String stepOne(@Validated(UserAccount.ValidationStepOne.class) @ModelAttribute("useraccount") UserAccount useraccount, BindingResult result) {
 			if (result.hasErrors()) {
 				return "error";
 			}
