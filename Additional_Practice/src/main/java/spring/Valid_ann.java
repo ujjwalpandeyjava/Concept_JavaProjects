@@ -1,11 +1,11 @@
-package spring.validated;
+package spring;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Optional;
 
+import org.apache.hc.core5.http.HttpStatus;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +15,6 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import pandeyDanceAcademy.pda_backend.constants.Constant_Num;
 import pandeyDanceAcademy.pda_backend.constants.Constant_String;
-import pandeyDanceAcademy.pda_backend.entity.UserRegistration;
 
 public class Valid_ann {
 	

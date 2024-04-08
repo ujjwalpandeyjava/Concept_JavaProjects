@@ -1,4 +1,7 @@
-#Oauth2.0 with multiple Registeration options
+#Oauth2.0 with multiple Registration options
+
+
+## A FAT JAR project, run the main file.
 
 ###Libraries used
 
@@ -6,7 +9,7 @@
 2. Core Java
 3. ThymeLeaf + plugin
 4. Spring Security
-5. Spring OAuth (Google + Github)
+5. Spring OAuth (Google + GitHub)
 
 ###Features
 

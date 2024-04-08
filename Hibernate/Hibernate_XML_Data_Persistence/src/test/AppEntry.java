@@ -1,8 +1,9 @@
 package test;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.classic.Session;
+
 
 import model.Book;
 import model.Comic;

@@ -1,4 +1,4 @@
-package demo;
+package APO_Demo;
 
 import org.springframework.stereotype.Component;
 

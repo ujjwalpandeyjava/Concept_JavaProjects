@@ -1,4 +1,4 @@
-package demo;
+package APO_Demo;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

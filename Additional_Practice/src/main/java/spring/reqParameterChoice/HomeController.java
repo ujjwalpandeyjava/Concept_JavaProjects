@@ -1,4 +1,4 @@
-package spring.reqMapping;
+package spring.reqParameterChoice;
 
 
 
