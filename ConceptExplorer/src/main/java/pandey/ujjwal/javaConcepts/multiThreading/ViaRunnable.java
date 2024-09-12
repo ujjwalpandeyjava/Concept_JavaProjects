@@ -2,14 +2,14 @@ package pandey.ujjwal.javaConcepts.multiThreading;
 
 public class ViaRunnable {
 	public static void main(String[] args) {
-		MyRunnable myRunnable = new MyRunnable();
-		Thread thread = new Thread(myRunnable);
+		TopClass c1 = new TopClass();
+		Thread thread = new Thread(c1);
 		thread.start();
 		System.out.println("Main thread is still running");
 	}
 }
 
-class MyRunnable implements Runnable {
+class TopClass implements Runnable {
 	@Override
 	public void run() {
 		Thread thread = Thread.currentThread();
