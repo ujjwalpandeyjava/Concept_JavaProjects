@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    ">
+	<!-- Learn from here: https://www.tutorialspoint.com/spring/spring_web_mvc_framework.htm -->
+	
+	<!-- This file is "the application context" file it is loaded by web.xml 
+		and the naming convention of this file is: "[name in '<servlet- name>' of 
+		web.xml]-servlet.xml" -->
+
+	<!-- This file gives controller location(s) and view resolver convention 
+		to "DispatcherServlet" -->
+
+	<!-- Step 1 - in file web.xml -->
+	<!-- Step 2 and 3 this file -->
+	<!-- step 4 - in all controllers -->
+
+	<!--Step 2: to activate Spring MVC annotation scanning capability which 
+		allows to make use of annotations . 
+		To let XML know which package to scan for components -->
+	<context:component-scan base-package="controller*" />
+	<context:annotation-config></context:annotation-config>
+
+	<!--Step 3: Configuration of View Resolver, define rules to resolve the view names -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" name="viewResolver">
+		<!-- <property name="prefix" value="/WEB-INF/views/" /> -->
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp" />
+		<!-- Auto add the extension to the view file. -->
+	</bean>
+</beans>
