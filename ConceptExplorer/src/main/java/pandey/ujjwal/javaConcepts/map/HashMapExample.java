@@ -10,7 +10,21 @@ class HashMapExample {
 		itis.put(1, "one");
 		itis.put(2, "Two");
 		itis.put(3, "Three");
-
+		System.out.println(itis);
 		System.out.println(itis.get(3));
+		
+		Map<String, Object> mapA = Map.of(
+		    "path", "path",
+		    "method", "method",
+		    "error_message", "error_message"
+		);
+		Map<String, Object> mapB = new HashMap<String, Object>() {{
+		    put("path", "path");
+		    put("method", "method");
+		    put("error_message", "error_message");
+		}};
+
+		System.out.println(mapA);
+		System.out.println(mapB);
 	}
 }

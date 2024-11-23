@@ -46,22 +46,22 @@ public class ExampleGPT__ {
 
 	@GetMapping("/ai/generate")
 	    public Map generate(@RequestParam(value = "message", defaultValue = "Tell me a joke") String message) {
-	    	
-	        
-	    	var openAiApi = new org.springframework.ai.openai.api.OpenAiApi(OPENAI_API_KEY);
-	        var chatClient = new OpenAiChatClient(openAiApi).
-	        		.withDefaultOptions(
-	        				OpenAiChatOptions.builder()
-	        				.withModel("gpt-35-turbo")
-	        				.withTemperature(0.5f)
-	        				.withMaxTokens(200)
-	        				.build()
-	                );
-
-//	        ChatResponse response = chatClient.call(new Prompt("Generate the names of 5 famous pirates."));
-//	        Flux<ChatResponse> response = chatClient.stream(new Prompt("Generate the names of 5 famous pirates."));
-	        
-//	        return Map.of("generation", chatClient.call(new Prompt(message)));
+//	    	
+//	        
+//	    	var openAiApi = new org.springframework.ai.openai.api.OpenAiApi(OPENAI_API_KEY);
+//	        var chatClient = new OpenAiChatClient(openAiApi).
+//	        		.withDefaultOptions(
+//	        				OpenAiChatOptions.builder()
+//	        				.withModel("gpt-35-turbo")
+//	        				.withTemperature(0.5f)
+//	        				.withMaxTokens(200)
+//	        				.build()
+//	                );
+//
+////	        ChatResponse response = chatClient.call(new Prompt("Generate the names of 5 famous pirates."));
+////	        Flux<ChatResponse> response = chatClient.stream(new Prompt("Generate the names of 5 famous pirates."));
+//	        
+////	        return Map.of("generation", chatClient.call(new Prompt(message)));
 	        return null;
 
 	}
