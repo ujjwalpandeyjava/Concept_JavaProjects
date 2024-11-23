@@ -1,4 +1,4 @@
-package pandey.ujjwal.javaConcepts.multiThreading;
+package pandey.ujjwal.javaConcepts.threads;
 
 import java.util.Map;
 

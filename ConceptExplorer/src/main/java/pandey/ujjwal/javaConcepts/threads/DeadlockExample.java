@@ -1,4 +1,4 @@
-package pandey.ujjwal.javaConcepts.multiThreading.exceptions;
+package pandey.ujjwal.javaConcepts.threads;
 
 public class DeadlockExample {
 	private static final Object resourceA = new Object();

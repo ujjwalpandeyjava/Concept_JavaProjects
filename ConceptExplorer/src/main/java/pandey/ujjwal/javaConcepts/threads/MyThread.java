@@ -1,4 +1,4 @@
-package pandey.ujjwal.javaConcepts.multiThreading;
+package pandey.ujjwal.javaConcepts.threads;
 
 public class MyThread {
 	public static void main(String[] args) {
