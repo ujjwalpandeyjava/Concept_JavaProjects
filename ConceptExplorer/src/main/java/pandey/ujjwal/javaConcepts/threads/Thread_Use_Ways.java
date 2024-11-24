@@ -1,13 +1,103 @@
 package pandey.ujjwal.javaConcepts.threads;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * There are 4 different ways to run a code in different thread.
+ * 
+ * Ways to run a class <br/>
+ * - Extend Thread <br/>
+ * - Implement Runnable<br/>
+ * - Using Lambda (for one in-line method)<br/>
+ * - Using ExecutorService<br/>
+ */
 public class Thread_Use_Ways {
 
 	public static void main(String[] ar) {
 		// Don't use same object in different threads, as they will start working on
-		// same object reference.
-
-		viaThreadExtend();
+		// same object reference and manipulate same instance.
+//		viaThreadExtend();
 //		viaRunnable();
+//		viaLambdaExpression();
+		viaExecutorService();
+	}
+
+	/**
+	 * Best of thread working with lot of advanced controls.
+	 * 
+	 * Part of java concurrent package.
+	 * 
+	 * Provides a higher level API for managing threads in a more flexible and
+	 * robust way.
+	 * 
+	 * It abstracts the creation, scheduling, and execution of tasks, making it
+	 * easier to manage thread lifecycle and improve the scalability and performance
+	 * of the applications.
+	 * 
+	 * Theory in ExecutorTheory.md
+	 */
+	private static void viaExecutorService() {
+		System.out.println("ExecutorService started...");
+		ExecutorService executorService = Executors.newFixedThreadPool(3);
+		for (int i = 0; i < 5; i++) {
+			executorService.submit(() -> {
+				try {
+					TimeUnit.SECONDS.sleep(2);
+					System.out.println("Task executed by: " + Thread.currentThread().getName());
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+				}
+			});
+		}
+		executorService.shutdown(); // Initiates an orderly shutdown
+		try {
+			if (!executorService.awaitTermination(60, TimeUnit.SECONDS)) {
+				executorService.shutdownNow(); // Forces shutdown if tasks don't finish in time
+			}
+		} catch (InterruptedException e) {
+			executorService.shutdownNow();
+		}
+	}
+
+	// Rearly used
+	private static void viaLambdaExpression() {
+		// Example 1
+		Runnable runnable = () -> {
+			System.out.println("Thread is running...");
+		};
+		Thread thread = new Thread(runnable);
+		thread.start(); // Start the thread
+
+		// Example 2
+		Thread thread2 = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				for (int i = 1; i <= 5; i++) {
+					System.out.println("Thread on loop: " + i);
+					try {
+						Thread.sleep(50);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		thread2.start();
+
+		Runnable runnable2 = () -> {
+			for (int i = 1; i <= 5; i++) {
+				System.out.println("Thread on loop2: " + i);
+				try {
+					Thread.sleep(50);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		new Thread(runnable2).start();
+		new Thread(runnable2).start();
 	}
 
 	private static void viaThreadExtend() {
