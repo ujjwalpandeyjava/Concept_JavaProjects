@@ -1,17 +1,17 @@
 package pandey.ujjwal.javaConcepts.threads;
 
-public class DeadlockExample {
+public class Deadlock_Eg {
 	private static final Object resourceA = new Object();
 	private static final Object resourceB = new Object();
 
 	public static void main(String[] args) {
+
 		Thread thread1 = new Thread(() -> {
 			synchronized (resourceA) {
 				Thread t1 = Thread.currentThread();
 				System.out.println("Thread 1: Acquired Resource A, by thread: " + t1.getName());
 				try {
-					// Simulate some work
-					Thread.sleep(100);
+					Thread.sleep(100); // Simulate some work
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
