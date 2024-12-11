@@ -1,4 +1,4 @@
-package pandey.ujjwal.javaConcepts.vars;
+package pandey.ujjwal.javaConcepts.keywords;
 
 public class Vars {
 

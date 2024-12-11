@@ -41,7 +41,9 @@ public class Thread_Use_Ways {
 	private static void viaExecutorService() {
 		System.out.println("ExecutorService started...");
 		ExecutorService executorService = Executors.newFixedThreadPool(3);
+
 		for (int i = 0; i < 5; i++) {
+			// Ensures service will not shut down until all submitted tasks are completed.
 			executorService.submit(() -> {
 				try {
 					TimeUnit.SECONDS.sleep(2);
@@ -50,15 +52,32 @@ public class Thread_Use_Ways {
 					Thread.currentThread().interrupt();
 				}
 			});
-		}
-		executorService.shutdown(); // Initiates an orderly shutdown
-		try {
-			if (!executorService.awaitTermination(60, TimeUnit.SECONDS)) {
-				executorService.shutdownNow(); // Forces shutdown if tasks don't finish in time
+			if (i == 1) {				
+				// Optionally submit more tasks
+				executorService.execute(() -> {
+					System.out.println("Additional task executed by: " + Thread.currentThread().getName());
+				});
 			}
-		} catch (InterruptedException e) {
-			executorService.shutdownNow();
 		}
+
+		// Optionally submit more tasks
+		executorService.execute(() -> {
+			System.out.println("Additional task executed by: " + Thread.currentThread().getName());
+		});
+
+		executorService.shutdown(); // Initiates an orderly shutdown
+		// Keeping this block will block the further code execution.
+//		try {
+//			// Used to block until all tasks have completed execution after a shutdown
+//			// request, or the timeout occurs.
+//			if (!executorService.awaitTermination(60, TimeUnit.SECONDS)) {
+//				executorService.shutdownNow(); // Forces shutdown if tasks don't finish in time.
+//			}
+//		} catch (InterruptedException e) {
+//			executorService.shutdownNow();
+//		}
+
+		System.out.println("ExecutorService code executed work in threads.");
 	}
 
 	// Rearly used

@@ -18,4 +18,11 @@ public class PasswordGenerator {
         Collections.shuffle(pwdCharsList);
         return pwdCharsList.stream().collect(StringBuilder::new, StringBuilder::append, StringBuilder::append).substring(0, n);
     }
+    public static String sanitizeFilename(String filename) {
+        if (filename == null || filename.isEmpty()) {
+            return "default_filename"; // Fallback for null or empty filenames
+        }
+        // Replace invalid characters with underscores
+        return filename.replaceAll("[\\\\/:*?\"<>|]", "_");
+    }
 }
