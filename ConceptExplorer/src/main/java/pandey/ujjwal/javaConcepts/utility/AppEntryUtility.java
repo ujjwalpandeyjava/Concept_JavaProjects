@@ -27,5 +27,6 @@ public class AppEntryUtility {
         System.out.println(new MathUtils());    // throws error constructor not visible (Due to it is private)
         */
         System.out.println("Random password: " + PasswordGenerator.generateRandomPassword(5));
+        System.out.println("Random password: " + PasswordGenerator.generateOtp(5));
     }
 }

@@ -1,4 +1,4 @@
-package pandey.ujjwal.javaConcepts.utility;
+package pandey.ujjwal.javaConcepts.utility.fileUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -9,7 +9,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
 import jakarta.servlet.http.Part;
+import pandey.ujjwal.javaConcepts.utility.constants.Const;
 
 public class FileUtility {
 	public static String createSaveFileAndDirectory(String filePurpose, String userId, Part inputFilePart,
@@ -59,7 +61,7 @@ public class FileUtility {
 					while ((read = filecontent.read(readFile)) != -1) {
 						out.write(readFile, 0, read);
 					}
-					return Constants.CURRENTHOST + newDire + "/" + originalFileName;
+					return Const.CURRENTHOST + newDire + "/" + originalFileName;
 				} catch (Exception e) {
 					e.printStackTrace();
 				} finally {

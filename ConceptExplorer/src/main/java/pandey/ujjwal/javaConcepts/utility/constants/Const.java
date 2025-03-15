@@ -10,7 +10,7 @@ public class Const {
 	public static final int SIXTY = 60;
 	public static final int HUNDRED = 100;
 	public final static int ONE_TWENTY = 120;
-	
+
 	public static final String SECONDS = "Seconds";
 	public static final String MINUTES = "Minutes";
 
@@ -29,6 +29,7 @@ public class Const {
 	public static final String USER_EXISTS = "User already exist";
 	public static final String INCORRECT_EMAIL = "Incorrect email";
 	public static final Object CONTENT = "Content";
+	public static final String CURRENTHOST = "abc.com";
 
 	private Const() {
 	}

@@ -3,6 +3,8 @@ package pandey.ujjwal.ConceptExplorer.global.exceptions;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -18,6 +20,8 @@ import pandey.ujjwal.ConceptExplorer.global.constants.Const;
 
 @ControllerAdvice
 public class GlobalException {
+
+	Logger logger = LoggerFactory.getLogger(GlobalException.class);
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<Map<String, Object>> handleValidationExceptions(MethodArgumentNotValidException ex) {
@@ -43,8 +47,8 @@ public class GlobalException {
 	public ResponseEntity<Map<String, Object>> httpMediaTypeNotSupportedException(
 			HttpMediaTypeNotSupportedException ex) {
 		Map<String, Object> errors = new HashMap<>();
-		System.out.println("global ex, HttpMediaTypeNotSupportedException");
 		errors.put(Const.MESSAGE, ex.getMessage());
+		logger.error("Global ex, HttpMediaTypeNotSupportedException: {}", errors);
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
 	}
 

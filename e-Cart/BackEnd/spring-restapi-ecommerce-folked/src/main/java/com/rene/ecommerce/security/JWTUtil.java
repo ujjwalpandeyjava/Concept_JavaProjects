@@ -26,7 +26,7 @@ public class JWTUtil {
 	public String getEmail(String token) {
 		Claims claims = getClaims(token);
 		if (claims != null)
-			return claims.getSubject();
+			return claims.getSubject(); 
 		return null;
 	}
 
