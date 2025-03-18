@@ -101,9 +101,12 @@
 		</dependency>
 
 
+		<!-- Boiler plate remover -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<version>1.18.36</version>
+			<scope>provided</scope>
 			<optional>true</optional>
 		</dependency>
 
@@ -122,7 +125,7 @@
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-openai-spring-boot-starter</artifactId>
 		</dependency>
-		
+
 		<!--
 			Chat-GPT integration
 			https://github.com/TheoKanning/openai-java
@@ -132,23 +135,36 @@
 			<artifactId>service</artifactId>
 			<version>0.16.0</version>
 		</dependency>
-		
-		
+
+
 		<!-- pring-dotenv to read env values-->
 		<dependency>
 			<groupId>me.paulschwarz</groupId>
 			<artifactId>spring-dotenv</artifactId>
 			<version>4.0.0</version>
 		</dependency>
-		
+
 		<!-- POJO to JSON -->
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 			<version>20240303</version>
 		</dependency>
-		
-		
+
+		<!-- Logging - SLF4J API -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.36</version> <!-- Check for the latest version -->
+		</dependency>
+		<!-- SLF4J Simple Binding (for console output) -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.7.36</version> <!-- Check for the latest version -->
+		</dependency>
+
+
 	</dependencies>
 
 	<!-- Below two for Open AI usage -->

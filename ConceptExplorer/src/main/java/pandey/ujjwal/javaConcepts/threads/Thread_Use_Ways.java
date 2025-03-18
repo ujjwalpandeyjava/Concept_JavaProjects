@@ -18,9 +18,9 @@ public class Thread_Use_Ways {
 	public static void main(String[] ar) {
 		// Don't use same object in different threads, as they will start working on
 		// same object reference and manipulate same instance.
-//		viaThreadExtend();
-//		viaRunnable();
-//		viaLambdaExpression();
+		// viaThreadExtend();
+		// viaRunnable();
+		// viaLambdaExpression();
 		viaExecutorService();
 	}
 
@@ -52,7 +52,7 @@ public class Thread_Use_Ways {
 					Thread.currentThread().interrupt();
 				}
 			});
-			if (i == 1) {				
+			if (i == 1) {
 				// Optionally submit more tasks
 				executorService.execute(() -> {
 					System.out.println("Additional task executed by: " + Thread.currentThread().getName());
@@ -67,15 +67,16 @@ public class Thread_Use_Ways {
 
 		executorService.shutdown(); // Initiates an orderly shutdown
 		// Keeping this block will block the further code execution.
-//		try {
-//			// Used to block until all tasks have completed execution after a shutdown
-//			// request, or the timeout occurs.
-//			if (!executorService.awaitTermination(60, TimeUnit.SECONDS)) {
-//				executorService.shutdownNow(); // Forces shutdown if tasks don't finish in time.
-//			}
-//		} catch (InterruptedException e) {
-//			executorService.shutdownNow();
-//		}
+		// try {
+		// // Used to block until all tasks have completed execution after a shutdown
+		// // request, or the timeout occurs.
+		// if (!executorService.awaitTermination(60, TimeUnit.SECONDS)) {
+		// executorService.shutdownNow(); // Forces shutdown if tasks don't finish in
+		// time.
+		// }
+		// } catch (InterruptedException e) {
+		// executorService.shutdownNow();
+		// }
 
 		System.out.println("ExecutorService code executed work in threads.");
 	}

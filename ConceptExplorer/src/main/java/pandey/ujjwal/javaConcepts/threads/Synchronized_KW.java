@@ -52,14 +52,12 @@ public class Synchronized_KW {
 				counter.incrementSimple();
 			}
 		});
-
 		Thread t2 = new Thread(() -> {
 			for (int i = 0; i < 20000; i++) {
 				counter.increment();
 				counter.incrementSimple();
 			}
 		});
-
 		t1.start();
 		t2.start();
 
@@ -70,9 +68,7 @@ public class Synchronized_KW {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-
 		// Print final counts
 		counter.printCount();
-
 	}
 }
