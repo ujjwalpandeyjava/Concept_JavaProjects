@@ -1,4 +1,4 @@
-package pandey.ujjwal.concepts.objectMapperEg;
+package pandey.ujjwal.concepts.objectMapper_objectToJson;
 
 public class OM_User {
 	private String name;
