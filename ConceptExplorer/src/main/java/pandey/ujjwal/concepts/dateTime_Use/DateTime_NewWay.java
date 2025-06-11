@@ -1,4 +1,4 @@
-package pandey.ujjwal.concepts.dateUse;
+package pandey.ujjwal.concepts.dateTime_Use;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -26,7 +26,7 @@ import java.time.format.DateTimeFormatter;
  * 7. Period: Represents a period of time between two dates.
  * 8. DateTimeFormatter: Formats and parses dates and times.
  */
-public class DateTime_New {
+public class DateTime_NewWay {
 	public static void main(String[] args) {
 		// 1. LocalDate: Represents a date without a time zone.
 		LocalDate date = LocalDate.of(2025, 3, 17);

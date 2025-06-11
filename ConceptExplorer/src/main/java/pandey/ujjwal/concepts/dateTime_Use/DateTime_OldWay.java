@@ -1,4 +1,4 @@
-package pandey.ujjwal.concepts.dateUse;
+package pandey.ujjwal.concepts.dateTime_Use;
 
 import java.text.DateFormatSymbols;
 import java.text.FieldPosition;
@@ -13,7 +13,7 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
-class DateTime_Old {
+public class DateTime_OldWay {
 	public static void main(String[] args) throws ParseException {
 // 		https://jenkov.com/tutorials/java-internationalization/simpledateformat.html
 
