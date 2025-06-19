@@ -37,12 +37,12 @@ public class DateTime_NewWay {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DateTime_NewWay.class);
 
 	public static void main(String[] args) {
-		// localDateEg();
-		// localTimeEg();
-		// localDateTimeEg();
-		// instantEg();
-		// offSetDateTimeEg();
-		// zonedDateTimeEg();
+		localDateEg();
+		localTimeEg();
+		localDateTimeEg();
+		instantEg();
+		offSetDateTimeEg();
+		zonedDateTimeEg();
 		durationUseEg();
 		dateTimeFormatterEg();
 	}
