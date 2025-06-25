@@ -1,5 +1,4 @@
-#Can define different properties for different profiles:
-
+# Can define different properties for different profiles:
 
 logging:
   level:

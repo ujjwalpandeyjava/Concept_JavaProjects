@@ -16,10 +16,3 @@ There are several ways to activate a profile in Spring Boot:
 	You can use the `@Profile` annotation on your configuration classes or methods to indicate they should be used only when a certain profile or profiles are active¹.
 
 The last profile added gets the highest precedence.
-
-Source: Conversation with Bing, 11/10/2023
-(1) Spring Profiles | Baeldung. https://www.baeldung.com/spring-profiles.
-(2) How to Use Profiles in Spring Boot - DZone. https://dzone.com/articles/spring-boot-profiles-1.
-(3) Guide to Spring Boot Profiles - HowToDoInJava. https://howtodoinjava.com/spring-boot/spring-profiles/.
-(4) 25. Profiles - Spring | Home. https://docs.spring.io/spring-boot/docs/2.1.13.RELEASE/reference/html/boot-features-profiles.html.
-(5) 22. Profiles - Spring | Home. https://docs.spring.io/spring-boot/docs/1.2.0.M1/reference/html/boot-features-profiles.html.
