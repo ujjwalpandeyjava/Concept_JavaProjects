@@ -2,7 +2,6 @@ package pandey.ujjwal.concepts.spring;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Optional;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.http.HttpStatus;

@@ -19,10 +19,10 @@ public class ThreadUseWays {
 	public static void main(String[] ar) {
 		// Don't use same object in different threads, as they will start working on
 		// same object reference and manipulate same instance.
-		// viaThreadExtend();
-		// viaRunnable();
-		// viaLambdaExpression();
-		// viaExecutorService();
+		viaThreadExtend();
+		viaRunnable();
+		viaLambdaExpression();
+		viaExecutorService();
 	}
 
 	/**

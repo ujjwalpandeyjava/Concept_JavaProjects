@@ -24,7 +24,8 @@ public class AppEntryLogger {
 		}
 
 		SimpleFormatter formatter = new SimpleFormatter();
-		fileHandler.setFormatter(formatter);
+		if (fileHandler != null)
+			fileHandler.setFormatter(formatter);
 
 		logger.warning("This is a warning message.");
 		logger.severe("This is a severe error message.");

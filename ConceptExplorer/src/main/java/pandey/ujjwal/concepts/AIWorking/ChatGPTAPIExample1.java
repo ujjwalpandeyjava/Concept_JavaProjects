@@ -20,6 +20,7 @@ public class ChatGPTAPIExample1 {
 		try {
 			// URL obj = new URL(url);
 			// HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
+			@SuppressWarnings("deprecation")
 			HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
 			connection.setRequestMethod("POST");
 			connection.setRequestProperty("Authorization", "Bearer " + apiKey);

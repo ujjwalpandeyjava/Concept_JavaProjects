@@ -1,6 +1,17 @@
-spring
- application
-  name=ConceptExplorer
+spring:
+ application:
+  name: ConceptExplorer
+ kafka:
+  bootstrap-servers: localhost:9092
+  consumer:
+    group-id: my-group
+    auto-offset-reset: earliest
+    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  producer:
+    key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
 resilience4j:
   circuitbreaker:
     instances:
@@ -34,7 +45,6 @@ resilience4j:
       apiTimeLimiter:
         timeout-duration: 3s
 
-# Actuator for monitoring
 management:
   endpoints:
     web:
@@ -43,3 +53,6 @@ management:
   endpoint:
     health:
       show-details: always
+
+# management.endpoints == Actuator for monitoring
+# spring.kafka == For Event driven architecture

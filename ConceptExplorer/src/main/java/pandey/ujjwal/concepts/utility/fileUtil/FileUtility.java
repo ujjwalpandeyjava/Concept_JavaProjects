@@ -51,21 +51,22 @@ public class FileUtility {
 			if (inputFilePart.getSize() > 0) {
 				OutputStream out = null;
 				try {
-					InputStream filecontent = null;
+					InputStream fileContent = null;
 					int read = 0;
 					String originalFileName = getFileName(inputFilePart).replace(" ", "");
 					uploadingFile = directoryPath + File.separator + originalFileName;
 					out = new FileOutputStream(new File(uploadingFile));
-					filecontent = inputFilePart.getInputStream();
+					fileContent = inputFilePart.getInputStream();
 					final byte[] readFile = new byte[1024]; // 1MB buffer
-					while ((read = filecontent.read(readFile)) != -1) {
+					while ((read = fileContent.read(readFile)) != -1) {
 						out.write(readFile, 0, read);
 					}
-					return Const.CURRENTHOST + newDire + "/" + originalFileName;
+					return Const.CURRENT_HOST + newDire + "/" + originalFileName;
 				} catch (Exception e) {
 					e.printStackTrace();
 				} finally {
-					out.close();
+					if (out != null)
+						out.close();
 				}
 			}
 			return uploadingFile;

@@ -17,12 +17,13 @@ public class WebScraper {
 		String TextToSearch = "home";
 
 		// Create a connection to the website
+		@SuppressWarnings("deprecation")
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 		con.setRequestMethod("GET");
 		con.connect();
 		int responseCode = con.getResponseCode();
-		System.out.println("Connection stablished!\n" + responseCode);
+		System.out.println("Connection stablish!\n" + responseCode);
 
 		// Check for success response
 		if (responseCode == 200) {

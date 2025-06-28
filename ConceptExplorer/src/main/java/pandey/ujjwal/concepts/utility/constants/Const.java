@@ -29,7 +29,7 @@ public class Const {
 	public static final String USER_EXISTS = "User already exist";
 	public static final String INCORRECT_EMAIL = "Incorrect email";
 	public static final Object CONTENT = "Content";
-	public static final String CURRENTHOST = "abc.com";
+	public static final String CURRENT_HOST = "abc.com";
 
 	private Const() {
 	}

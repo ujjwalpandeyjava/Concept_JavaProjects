@@ -1,6 +1,9 @@
 package pandey.ujjwal.concepts.utility.requestProcessor;
 /* 
  * Cert: Certificate (SSL Certificate)
+ * Old way
+ * 
+ * Now, new way is to use the WebClient/Feign for better control and inbuilt methods.
  */
 
 import java.io.BufferedReader;
@@ -28,6 +31,8 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+
+@SuppressWarnings("deprecation")
 public class HttpRequestProcessor {
 	HttpRequestProcessor() {
 	}
@@ -172,7 +177,8 @@ public class HttpRequestProcessor {
 		/*------------Sending request ---------------*/
 		OutputStreamWriter out = new OutputStreamWriter(con.getOutputStream());
 		out.write(jsonText);
-		out.close();
+		if (out != null)
+			out.close();
 
 		int responseCode = con.getResponseCode();
 
@@ -231,7 +237,8 @@ public class HttpRequestProcessor {
 
 		OutputStreamWriter out = new OutputStreamWriter(con.getOutputStream());
 		out.write(jsonText);
-		out.close();
+		if (out != null)
+			out.close();
 
 		int responseCode = con.getResponseCode();
 

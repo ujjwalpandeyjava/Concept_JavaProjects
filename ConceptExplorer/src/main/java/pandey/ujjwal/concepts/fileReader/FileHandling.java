@@ -8,15 +8,14 @@ class FileHandlling {
 		FileReader fr = null;
 		try {
 			fr = new FileReader("./codeUploads/Text.txt");
+			int ch;
+			var strBuffer = new StringBuffer();
+			while ((ch = fr.read()) != -1)
+				strBuffer.append(Character.toString(ch));
+
+			System.out.println(strBuffer.toString());
 		} catch (IOException e) {
 			System.out.println("File not found.");
 		}
-		
-		int ch;
-		var strBuffer = new StringBuffer(); 
-		while ((ch = fr.read()) != -1)
-			strBuffer.append(Character.toString(ch));
-
-		System.out.println(strBuffer.toString());
 	}
 }

@@ -57,11 +57,10 @@ public class Interface1 {
 		Scanner scan = new Scanner(System.in);
 		char rep = 'n';
 		do {
-			System.out.println(
-					"Chosse from the option to find area of:\n 1. Circle\n 2. Rectangle\n 3. Square\n 4. Exit.");
-			int swit;
-			swit = scan.nextInt();
-			switch (swit) {
+			System.out.println("Chosse from the option to find area of:\n 1. Circle\n 2. Rectangle\n 3. Square\n 4. Exit.");
+			int itVar;
+			itVar = scan.nextInt();
+			switch (itVar) {
 			case 1:
 				Circle sh = new Circle();
 				sh.input();
@@ -86,5 +85,6 @@ public class Interface1 {
 			System.out.println("Press y if you want to retry: ");
 			rep = scan.next().charAt(0);
 		} while (rep == 'Y' || rep == 'y');
+		scan.close();
 	}
 }

@@ -188,6 +188,20 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		
+
+		<!-- For Event Driven Architecture -->
+		<!-- Kafka for event driven data architecture -->
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
+		<!-- Additional: Stream support for kafka -->
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-streams</artifactId>
+		</dependency>
+
+
 	</dependencies>
 
 	<!-- Below two for Open AI usage -->

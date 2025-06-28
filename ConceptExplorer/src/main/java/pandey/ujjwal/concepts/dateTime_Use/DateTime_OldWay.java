@@ -91,18 +91,20 @@ public class DateTime_OldWay {
 		System.out.println("== " + simpleDateFormat4.parse("2023-15-08"));
 
 		/* Creating a SimpleDateFormat For a Specific Locale */
+		@SuppressWarnings("deprecation")
 		SimpleDateFormat sdf5 = new SimpleDateFormat("EEEEE dd MMMMM yyyy HH:mm:ss.SSSZ", new Locale("da", "DK"));
 		System.out.println(sdf5.format(new Date()));
 
 		/* DateFormatSymbols : customize the date symbols, for a specific Locale */
+		@SuppressWarnings("deprecation")
 		Locale locale = new Locale("en", "UK");
 		DateFormatSymbols dateFormatSymbols = new DateFormatSymbols(locale);
-		dateFormatSymbols.setWeekdays(new String[] { "Unused", "vikas Sunday", "Savi Monday", "Nites Tuesday",
-				"Vics Wednesday", "BBM Thursday", "Sur Friday", "Rahu Saturday", });
+		dateFormatSymbols.setWeekdays(new String[] { "Unused", "vikas Sunday", "Savi Monday", "Nites Tuesday", "Name Wednesday", "BBM Thursday", "Sur Friday", "Rahu Saturday", });
 		SimpleDateFormat simpleDateFormat6 = new SimpleDateFormat("EEEEE MMMMM yyyy", dateFormatSymbols);
 		System.out.println(simpleDateFormat6.format(new Date()));
 
 		/* Can set more date formatting symbols on the DateFormatSymbols instance */
+		@SuppressWarnings("deprecation")
 		DateFormatSymbols format = new DateFormatSymbols(new Locale("en", "US"));
 		String[] daysName = format.getWeekdays();
 
