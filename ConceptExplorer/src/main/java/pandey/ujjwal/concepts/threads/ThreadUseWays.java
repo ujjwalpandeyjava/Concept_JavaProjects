@@ -4,6 +4,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -23,6 +25,7 @@ public class ThreadUseWays {
 		viaRunnable();
 		viaLambdaExpression();
 		viaExecutorService();
+		// eg2();
 	}
 
 	/**
@@ -169,10 +172,10 @@ public class ThreadUseWays {
 
 	private static void eg2() {
 		// Uncomment the method you want to test
-		// viaThreadExtend2();
-		// viaRunnable2();
-		// viaLambdaExpression2();
-		// viaExecutorService2();
+		viaThreadExtend2();
+		viaRunnable2();
+		viaLambdaExpression2();
+		viaExecutorService2();
 	}
 
 	/**
@@ -254,7 +257,7 @@ class ThreadExample extends Thread {
 	public void run() {
 		for (int i = 0; i < 10; i++) {
 			var currentThread = Thread.currentThread();
-			System.out.println("Name: " + currentThread.getName() + ", Id: " + currentThread.getId() + ", priority: "
+			System.out.println("Name: " + currentThread.getName() + ", Id: " + currentThread.threadId() + ", priority: "
 					+ currentThread.getPriority() + " | " + i);
 			try {
 				if (currentThread.getPriority() == 1) {
@@ -283,14 +286,18 @@ class MyRunnable2 implements Runnable {
 	public void run() {
 		for (int i = 1; i <= 5; i++) {
 			var currentThread = Thread.currentThread();
-			System.out.println("Name: " + currentThread.getName() + ", Id: " + currentThread.getId() + ", priority:  "
-					+ currentThread.getPriority() + " | " + i + " = " + this.val++);
-
+			System.out.println("Name: " + currentThread.getName() + ", Id: " + currentThread.threadId()
+					+ ", priority:  " + currentThread.getPriority() + StringUtils.SPACE + "|" + StringUtils.SPACE + i
+					+ " = " + this.val++);
 			try {
-				if (Thread.currentThread().getPriority() == 1)
-					Thread.currentThread().sleep(100);
-				if (Thread.currentThread().getPriority() == 2)
-					Thread.currentThread().sleep(150);
+				if (Thread.currentThread().getPriority() == 1) {
+					// Thread.currentThread();
+					Thread.sleep(100);
+				}
+				if (Thread.currentThread().getPriority() == 2) {
+					// Thread.currentThread();
+					Thread.sleep(150);
+				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

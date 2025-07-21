@@ -1,3 +1,5 @@
+//  Check src/test for the test cases.
+
 package pandey.ujjwal.concepts.testing.jUnit5;
 
 public class JUnit5_Eg {
@@ -7,7 +9,7 @@ public class JUnit5_Eg {
 	}
 
 	public int methodWithOnePara(int numberToPrint) {
-//		return numberToPrint++;	// Post-increment
+		// return numberToPrint++; // Post-increment
 		return ++numberToPrint; // Pre-increment
 	}
 

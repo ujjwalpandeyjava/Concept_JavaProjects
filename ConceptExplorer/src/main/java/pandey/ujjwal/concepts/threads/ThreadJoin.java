@@ -2,14 +2,17 @@ package pandey.ujjwal.concepts.threads;
 
 // Java program to explain the concept of joining a thread.
 
-// Creating thread by creating the
-// objects of that class
-class ThreadJoining extends Thread {
+// Custom thread class that defines the task to run in each thread
+class ThreadJoiningEg extends Thread {
+	// The run() method defines what this thread does when started
 	@Override
 	public void run() {
+		// Loop to simulate some repetitive work
 		for (int i = 0; i < 2; i++) {
 			try {
+				// Sleep for 500ms to mimic work and let thread scheduler switch context
 				Thread.sleep(500);
+				// Print the name of the currently executing thread
 				System.out.println("Current Thread: " + Thread.currentThread().getName());
 			} catch (Exception ex) {
 				System.out.println("Exception has been caught" + ex);
@@ -19,49 +22,36 @@ class ThreadJoining extends Thread {
 	}
 }
 
-// Join puts the thread execution in LIFO stack for execution completion
+// Join (join new thread with main) puts the thread execution in LIFO stack for execution completion
 public class ThreadJoin {
 	public static void main(String[] args) {
 
-		// Creating two threads
-		ThreadJoining t1 = new ThreadJoining();
-		ThreadJoining t2 = new ThreadJoining();
-		ThreadJoining t3 = new ThreadJoining();
+		// Create instances of our custom thread
+		var t1 = new ThreadJoiningEg();
+		var t2 = new ThreadJoiningEg();
+		var t3 = new ThreadJoiningEg();
 
 		try {
+			// Print the name of the starting (main) thread
 			System.out.println("Current Thread: " + Thread.currentThread().getName());
 
-			t3.start(); // Starts work
-			t1.start(); // Starts work
+			// Start t3 and t1 almost simultaneously
+			t1.start(); // t1 is started
+			t2.start(); // t2 is started
 
-			t1.join(); // main waits for t1 to end (but t3 has started work)
+			// main thread (the caller) waits for t1 to finish before moving forward
+			// t1 is not joined, so it runs in the background and may finish anytime
+			t2.join(); // Ensures main waits for t2 to finish
 
-			t2.start();
-			t2.join(); // main waits for t2 to end and t2 wait for t1 to end
+			// Starts only after t2 has completed
+			t3.start();
 
-			// t3.join(); // main waits for t3 to end after after t2 ends
+			// main again waits for t3 to finish before moving forward
+			// t3.join();
+
 		} catch (Exception ex) {
 			System.out.println("Exception has been caught" + ex);
 		}
 		System.out.println("Now the main will work.");
 	}
 }
-/**
- * The main thread prints its own name.
- * 
- * Starting Threads:
- * 
- * t1.start(): Starts the execution of thread t1.
- * 
- * t3.start(): Starts the execution of thread t3.
- * 
- * Joining Threads:
- * 
- * t1.join(): The main thread waits for thread t1 to finish before proceeding.
- * 
- * After t1 completes, it starts t2 with t2.start().
- * 
- * The main thread then waits for thread t2 to finish with t2.join().
- * 
- * Finally, it waits for thread t3 to finish with t3.join().
- */
