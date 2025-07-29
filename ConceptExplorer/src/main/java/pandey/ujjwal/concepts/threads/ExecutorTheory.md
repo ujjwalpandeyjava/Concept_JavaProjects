@@ -1,6 +1,18 @@
 # ExecutorService
 
-The `ExecutorService` in Java is part of the `java.util.concurrent` package and provides a higher level API for managing threads in a more flexible and robust way. It abstracts the creation, scheduling, and execution of tasks, making it easier to manage thread lifecycle and improve the scalability and performance of your applications.
+The `ExecutorService` is part of the `java.util.concurrent` package and provides a higher level API for managing threads in a more flexible and robust way
+
+It abstracts the creation, scheduling, and execution of tasks, making it easier to manage thread lifecycle and improve the scalability and performance of your applications.
+
+## Use case:
+| Scenario                    | Why ExecutorService?                 | Example                      |
+| --------------------------- | ------------------------------------ | ---------------------------- |
+| ✅ Multiple background tasks | Reuses threads (thread pool)         | Sending 100 emails           |
+| ✅ Controlled concurrency    | Limits number of threads             | 5 DB calls in parallel       |
+| ✅ Submit + Future result    | Get result back from task            | Web scraping or calculations |
+| ✅ Task queueing             | Queues if all threads busy           | Image processing queue       |
+| ✅ Graceful shutdown         | `shutdown()` or `awaitTermination()` | Clean exit of app            |
+
 
 ## Key Concepts
 

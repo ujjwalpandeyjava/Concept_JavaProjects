@@ -29,8 +29,8 @@ class SingleTonEx {
 		return instance;
 	}
 
-//	int schoolName = "APS";
+	// int schoolName = "APS";
 
-//	private void name() {	}
+	// private void name() { }
 	// Optional: Add methods and properties for the singleton instance
 }

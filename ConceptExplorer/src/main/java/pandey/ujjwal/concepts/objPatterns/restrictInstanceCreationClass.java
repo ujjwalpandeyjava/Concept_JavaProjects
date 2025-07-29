@@ -1,6 +1,7 @@
 package pandey.ujjwal.concepts.objPatterns;
-// Limiting the no. of objects
 
+// Not much helpful
+// Limiting instance creation of objects like a lightweight object pool
 public class restrictInstanceCreationClass {
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
@@ -14,7 +15,8 @@ public class restrictInstanceCreationClass {
 }
 
 class RestrictInstance {
-	public static int varCount = 0;
+	public volatile static int varCount = 0;
+	private static final int MAX_INSTANCES = 5;
 
 	/*
 	 * create private constructor that increases the count of varCount variable
@@ -22,13 +24,13 @@ class RestrictInstance {
 	 */
 	private RestrictInstance() {
 		varCount++;
-		System.out.println("â€œInstance number â€�" + varCount + " is created.");
+		System.out.println("â€œInstance number: " + varCount + " is created.");
 	}
 
 	public static synchronized RestrictInstance getLimInstance() {
-		if (varCount < 5)
+		if (varCount < MAX_INSTANCES)
 			return new RestrictInstance();
-		System.out.println("Maximum instance limit reached. You are not allowed to create anymore instances.");
+		System.out.println("Maximum instance limit reached.");
 		System.gc();
 		return null;
 	}
@@ -36,7 +38,7 @@ class RestrictInstance {
 	/*
 	 * delete the instance and decrease the count of the varCount variable
 	 */
-	public void finalise() {
+	public void finalize() {
 		System.out.println("Instance is deleted.");
 		varCount--;
 	}

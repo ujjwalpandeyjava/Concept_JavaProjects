@@ -1,7 +1,9 @@
 package pandey.ujjwal.concepts.threads;
 
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
@@ -21,11 +23,16 @@ public class ThreadUseWays {
 	public static void main(String[] ar) {
 		// Don't use same object in different threads, as they will start working on
 		// same object reference and manipulate same instance.
-		viaThreadExtend();
-		viaRunnable();
-		viaLambdaExpression();
+		// viaThreadExtend();
+		// viaRunnable();
+		// viaLambdaExpression();
 		viaExecutorService();
-		// eg2();
+
+		// More
+		// viaThreadExtend2();
+		// viaRunnable2();
+		// viaLambdaExpression2();
+		// viaExecutorService2();
 	}
 
 	/**
@@ -45,9 +52,9 @@ public class ThreadUseWays {
 	private static void viaExecutorService() {
 		System.out.println("ExecutorService started...");
 		ExecutorService executorService = Executors.newFixedThreadPool(3);
-
-		for (int i = 0; i < 5; i++) {
+		for (int i = 1; i <= 5; i++) {
 			// Ensures service will not shut down until all submitted tasks are completed.
+			// Future<?> future =
 			executorService.submit(() -> {
 				try {
 					TimeUnit.SECONDS.sleep(2);
@@ -56,10 +63,13 @@ public class ThreadUseWays {
 					Thread.currentThread().interrupt();
 				}
 			});
-			if (i == 1) {
-				// Optionally submit more tasks
+			// With try-catch
+			// Object result = future.get(); // waits for result
+			// System.out.println("Result: " + result);
+
+			if (i == 1) { // Optionally submit more tasks
 				executorService.execute(() -> {
-					System.out.println("Additional task executed by: " + Thread.currentThread().getName());
+					System.out.println("Additional task by: " + Thread.currentThread().getName());
 				});
 			}
 		}
@@ -68,7 +78,6 @@ public class ThreadUseWays {
 		executorService.execute(() -> {
 			System.out.println("Additional task executed by: " + Thread.currentThread().getName());
 		});
-
 		executorService.shutdown(); // Initiates an orderly shutdown
 		// Keeping this block will block the further code execution.
 		// try {
@@ -81,7 +90,6 @@ public class ThreadUseWays {
 		// } catch (InterruptedException e) {
 		// executorService.shutdownNow();
 		// }
-
 		System.out.println("ExecutorService code executed work in threads.");
 	}
 
@@ -168,14 +176,6 @@ public class ThreadUseWays {
 				e.printStackTrace();
 			}
 		}
-	}
-
-	private static void eg2() {
-		// Uncomment the method you want to test
-		viaThreadExtend2();
-		viaRunnable2();
-		viaLambdaExpression2();
-		viaExecutorService2();
 	}
 
 	/**
