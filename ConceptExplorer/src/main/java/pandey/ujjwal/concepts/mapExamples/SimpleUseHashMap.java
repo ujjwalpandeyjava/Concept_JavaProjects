@@ -1,12 +1,10 @@
-package pandey.ujjwal.concepts.map;
+package pandey.ujjwal.concepts.mapExamples;
 
 import java.util.HashMap;
 import java.util.Map;
 
-class HashMapEg {
-	public static void main(String ass[])
-	// public static void main(String []argh)
-	{
+class SimpleUseHashMap {
+	public static void main(String ass[]) {
 		Map<String, String> mapObj = new HashMap<>();
 		// here strung1=key,string2= value.
 		// key is - the word which we enter to get the value.

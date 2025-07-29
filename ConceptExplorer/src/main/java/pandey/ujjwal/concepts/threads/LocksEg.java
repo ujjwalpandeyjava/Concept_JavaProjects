@@ -60,7 +60,7 @@ public class LocksEg {
 	}
 
 	private static void notGoodWorking() {
-		var dualList = new ListsWorking();
+		ListsWorking dualList = new ListsWorking();
 
 		// Creating threads to work on the lists
 		Thread t1 = new Thread(() -> {
