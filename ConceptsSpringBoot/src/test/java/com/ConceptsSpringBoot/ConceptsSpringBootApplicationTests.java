@@ -1,10 +1,10 @@
-package concept.explorer.SpringbootMoudles;
+package com.ConceptsSpringBoot;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringbootMoudlesApplicationTests {
+class ConceptsSpringBootApplicationTests {
 
 	@Test
 	void contextLoads() {

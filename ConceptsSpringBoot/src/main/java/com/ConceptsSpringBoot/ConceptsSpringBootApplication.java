@@ -1,13 +1,11 @@
-package concept.explorer.SpringbootMoudles;
+package com.ConceptsSpringBoot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringbootMoudlesApplication {
-
+public class ConceptsSpringBootApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(SpringbootMoudlesApplication.class, args);
+		SpringApplication.run(ConceptsSpringBootApplication.class, args);
 	}
-
 }
