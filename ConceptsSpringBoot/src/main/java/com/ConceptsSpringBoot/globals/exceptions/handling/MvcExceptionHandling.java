@@ -1,4 +1,4 @@
-package com.ConceptsSpringBoot.globals.exceptionHandling;
+package com.ConceptsSpringBoot.globals.exceptions.handling;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

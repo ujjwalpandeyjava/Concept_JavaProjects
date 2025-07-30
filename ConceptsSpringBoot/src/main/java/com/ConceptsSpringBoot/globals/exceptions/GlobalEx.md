@@ -1,0 +1,1 @@
+Splitting exception handlers into multiple files is fully supported and recommended
