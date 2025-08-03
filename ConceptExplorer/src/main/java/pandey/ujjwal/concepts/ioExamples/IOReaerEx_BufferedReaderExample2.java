@@ -1,4 +1,4 @@
-package pandey.ujjwal.concepts.IOExample;
+package pandey.ujjwal.concepts.ioExamples;
 
 import java.io.IOException;
 

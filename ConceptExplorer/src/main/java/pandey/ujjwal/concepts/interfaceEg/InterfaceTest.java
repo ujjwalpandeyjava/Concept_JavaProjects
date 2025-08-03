@@ -52,12 +52,12 @@ class Square implements Shape {
 	}
 }
 
-public class Interface1 {
+public class InterfaceTest {
 	public static void main(String args[]) {
 		Scanner scan = new Scanner(System.in);
 		char rep = 'n';
 		do {
-			System.out.println("Chosse from the option to find area of:\n 1. Circle\n 2. Rectangle\n 3. Square\n 4. Exit.");
+			System.out.println("Choose from the option to find area of:\n 1. Circle\n 2. Rectangle\n 3. Square\n 4. Exit.");
 			int itVar;
 			itVar = scan.nextInt();
 			switch (itVar) {
