@@ -1,6 +1,5 @@
 package pandey.ujjwal.concepts.optionalEg;
 
-import java.util.List;
 import java.util.Optional;
 
 public class OptionalEg {
