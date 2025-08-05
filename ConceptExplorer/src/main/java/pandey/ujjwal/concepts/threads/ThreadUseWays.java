@@ -1,9 +1,7 @@
 package pandey.ujjwal.concepts.threads;
 
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
@@ -23,16 +21,14 @@ public class ThreadUseWays {
 	public static void main(String[] ar) {
 		// Don't use same object in different threads, as they will start working on
 		// same object reference and manipulate same instance.
-		// viaThreadExtend();
-		// viaRunnable();
+		// viaThread_ClassExtend();
+		// viaRunnable_InterfaceImplement();
 		// viaLambdaExpression();
 		viaExecutorService();
 
-		// More
-		// viaThreadExtend2();
-		// viaRunnable2();
-		// viaLambdaExpression2();
-		// viaExecutorService2();
+		// Example with tasks in there classes
+		// viaThread_ClassExtend2();
+		// viaRunnable_InterfaceImplement2();
 	}
 
 	/**
@@ -95,15 +91,19 @@ public class ThreadUseWays {
 
 	// Rarely used
 	private static void viaLambdaExpression() {
-		// Example 1
+		// Task 1 - with runnable interface
 		Runnable runnable = () -> {
-			System.out.println("Thread is running...");
+			for (int i = 1; i <= 5; i++) {
+				log.info("Task is running on loop:" + StringUtils.SPACE + Thread.currentThread().getName() + " - Count: " + i);
+				try {
+					Thread.sleep(50);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
 		};
-		Thread thread = new Thread(runnable);
-		thread.start();
-
-		// Example 2
-		Thread thread2 = new Thread(new Runnable() {
+		// Task 2 - with thread class
+		Thread threadIn = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				for (int i = 1; i <= 5; i++) {
@@ -116,23 +116,15 @@ public class ThreadUseWays {
 				}
 			}
 		});
-		thread2.start();
-
-		Runnable runnable2 = () -> {
-			for (int i = 1; i <= 5; i++) {
-				System.out.println("Thread on loop2: " + i);
-				try {
-					Thread.sleep(50);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-		};
-		new Thread(runnable2).start();
-		new Thread(runnable2).start();
+		// Start thread and task
+		Thread thread = new Thread(runnable);
+		thread.start(); // thread 1
+		new Thread(runnable).start(); // thread 2
+		new Thread(runnable).start(); // thread 3
+		threadIn.start();  // thread 4
 	}
 
-	private static void viaThreadExtend() {
+	private static void viaThread_ClassExtend() {
 		// Thread 1
 		ThreadExample threadExample = new ThreadExample();
 		threadExample.setName("T1");
@@ -156,7 +148,7 @@ public class ThreadUseWays {
 		}
 	}
 
-	private static void viaRunnable() {
+	private static void viaRunnable_InterfaceImplement() {
 		var obj1 = new MyRunnable2(10);
 		Thread thread1 = new Thread(obj1, "t1");
 		thread1.setPriority(1);
@@ -181,7 +173,7 @@ public class ThreadUseWays {
 	/**
 	 * Example: Extending the Thread class.
 	 */
-	private static void viaThreadExtend2() {
+	private static void viaThread_ClassExtend2() {
 		log.info("Using Thread Extension:");
 		Thread thread1 = new ThreadExample2();
 		thread1.setName("Thread-1");
@@ -195,7 +187,7 @@ public class ThreadUseWays {
 	/**
 	 * Example: Implementing the Runnable interface.
 	 */
-	private static void viaRunnable2() {
+	private static void viaRunnable_InterfaceImplement2() {
 		log.info("\nUsing Runnable Interface:");
 		Runnable task = new RunnableExample2();
 
@@ -204,39 +196,6 @@ public class ThreadUseWays {
 
 		thread1.start();
 		thread2.start();
-	}
-
-	/**
-	 * Example: Using Lambda Expressions for simple tasks.
-	 */
-	private static void viaLambdaExpression2() {
-		log.info("\nUsing Lambda Expressions:");
-		Runnable task = () -> {
-			for (int i = 0; i < 5; i++) {
-				log.info(Thread.currentThread().getName() + " - Count: " + i);
-				sleep(100);
-			}
-		};
-
-		new Thread(task, "Lambda-1").start();
-		new Thread(task, "Lambda-2").start();
-	}
-
-	/**
-	 * Example: Using ExecutorService for advanced thread management.
-	 */
-	private static void viaExecutorService2() {
-		log.info("\nUsing ExecutorService:");
-		ExecutorService executorService = Executors.newFixedThreadPool(3);
-
-		for (int i = 0; i < 5; i++) {
-			executorService.submit(() -> {
-				log.info(Thread.currentThread().getName() + " is executing a task.");
-				sleep(200);
-			});
-		}
-
-		executorService.shutdown(); // Gracefully shuts down the executor service
 	}
 
 	/**

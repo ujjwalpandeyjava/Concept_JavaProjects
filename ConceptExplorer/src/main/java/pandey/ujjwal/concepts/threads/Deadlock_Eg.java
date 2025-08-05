@@ -1,5 +1,10 @@
 package pandey.ujjwal.concepts.threads;
 
+// How to fix deadlock in Java?
+// A deadlock occurs when two or more threads are blocked forever, waiting for each other.
+// To avoid deadlock, we can ensure that all threads acquire resources in a consistent order.
+
+// In this example, thread1 holds resourceA and waits for resourceB, while thread2 holds resourceB and waits for resourceA.
 public class Deadlock_Eg {
 	private static final Object resourceA = new Object();
 	private static final Object resourceB = new Object();
