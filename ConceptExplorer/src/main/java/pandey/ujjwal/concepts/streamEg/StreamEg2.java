@@ -13,10 +13,10 @@ public class StreamEg2 {
 
 	public static void main(String[] args) {
 		// evenNumbers();
-		// listToMap();
+		listToMap();
 		// listToSalaryMapList();
 		// createProject();
-		flatMapExample();
+		// flatMapExample();
 	}
 
 	private static void evenNumbers() {
@@ -45,7 +45,9 @@ public class StreamEg2 {
 
 		System.out.println("\nUsing streams to group by salary:");
 		getListOfEmployees().stream()
-				.collect(Collectors.groupingBy(Employee::getSalary))
+				// .collect(Collectors.groupingBy(Employee::getSalary, Collectors.toList()))
+				// .collect(Collectors.groupingBy(Employee::getSalary, Collectors.mapping(Employee::getName, Collectors.toSet())))
+				.collect(Collectors.groupingBy(Employee::getSalary, Collectors.mapping(Employee::getName, Collectors.toList())))
 				.forEach((k, v) -> System.out.println("Key: " + k + ", Value: " + v));
 	}
 
@@ -99,7 +101,7 @@ public class StreamEg2 {
 				new Employee(7, "Shyam", 27, 46000),
 				new Employee(8, "Ujjwal", 30, 50000),
 				new Employee(9, "Mohan", 25, 45000),
-				new Employee(10, "Rita", 30, 49000),
+				new Employee(10, "Rita", 30, 45000),
 				new Employee(11, "Gita", 33, 53000),
 				new Employee(12, "Anita", 26, 44000));
 		return empList;
